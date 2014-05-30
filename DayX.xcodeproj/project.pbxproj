@@ -19,6 +19,12 @@
 		711A508519388096005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
 		711A508D19388096005642EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 711A508B19388096005642EF /* InfoPlist.strings */; };
 		711A508F19388096005642EF /* DayXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A508E19388096005642EF /* DayXTests.m */; };
+		711A509A193880A9005642EF /* DXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A5099193880A9005642EF /* DXListViewController.m */; };
+		711A509D193880BC005642EF /* DXListTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A509C193880BC005642EF /* DXListTableViewDataSource.m */; };
+		711A50A7193880EB005642EF /* DXEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A50A5193880EB005642EF /* DXEntryViewController.m */; };
+		711A50A8193880EB005642EF /* DXEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711A50A6193880EB005642EF /* DXEntryViewController.xib */; };
+		711A50EE19388798005642EF /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A50EB19388798005642EF /* Entry.m */; };
+		711A50EF19388798005642EF /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A50ED19388798005642EF /* EntryController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,17 @@
 		711A508A19388096005642EF /* DayXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DayXTests-Info.plist"; sourceTree = "<group>"; };
 		711A508C19388096005642EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		711A508E19388096005642EF /* DayXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayXTests.m; sourceTree = "<group>"; };
+		711A5098193880A9005642EF /* DXListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXListViewController.h; sourceTree = "<group>"; };
+		711A5099193880A9005642EF /* DXListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListViewController.m; sourceTree = "<group>"; };
+		711A509B193880BC005642EF /* DXListTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXListTableViewDataSource.h; sourceTree = "<group>"; };
+		711A509C193880BC005642EF /* DXListTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListTableViewDataSource.m; sourceTree = "<group>"; };
+		711A50A4193880EB005642EF /* DXEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXEntryViewController.h; sourceTree = "<group>"; };
+		711A50A5193880EB005642EF /* DXEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXEntryViewController.m; sourceTree = "<group>"; };
+		711A50A6193880EB005642EF /* DXEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DXEntryViewController.xib; sourceTree = "<group>"; };
+		711A50EA19388798005642EF /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		711A50EB19388798005642EF /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		711A50EC19388798005642EF /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		711A50ED19388798005642EF /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +126,17 @@
 			children = (
 				711A507819388095005642EF /* DXAppDelegate.h */,
 				711A507919388095005642EF /* DXAppDelegate.m */,
+				711A50EA19388798005642EF /* Entry.h */,
+				711A50EB19388798005642EF /* Entry.m */,
+				711A50EC19388798005642EF /* EntryController.h */,
+				711A50ED19388798005642EF /* EntryController.m */,
+				711A5098193880A9005642EF /* DXListViewController.h */,
+				711A5099193880A9005642EF /* DXListViewController.m */,
+				711A509B193880BC005642EF /* DXListTableViewDataSource.h */,
+				711A509C193880BC005642EF /* DXListTableViewDataSource.m */,
+				711A50A4193880EB005642EF /* DXEntryViewController.h */,
+				711A50A5193880EB005642EF /* DXEntryViewController.m */,
+				711A50A6193880EB005642EF /* DXEntryViewController.xib */,
 				711A507B19388095005642EF /* Images.xcassets */,
 				711A507019388095005642EF /* Supporting Files */,
 			);
@@ -222,6 +250,7 @@
 			files = (
 				711A507419388095005642EF /* InfoPlist.strings in Resources */,
 				711A507C19388095005642EF /* Images.xcassets in Resources */,
+				711A50A8193880EB005642EF /* DXEntryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711A50EE19388798005642EF /* Entry.m in Sources */,
+				711A509D193880BC005642EF /* DXListTableViewDataSource.m in Sources */,
+				711A509A193880A9005642EF /* DXListViewController.m in Sources */,
+				711A50A7193880EB005642EF /* DXEntryViewController.m in Sources */,
+				711A50EF19388798005642EF /* EntryController.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
 			);

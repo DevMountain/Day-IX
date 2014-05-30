@@ -8,6 +8,10 @@
 
 #import "DXAppDelegate.h"
 
+#import "DXListViewController.h"
+
+#import "EntryController.h"
+
 @implementation DXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +20,12 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    DXListViewController *listViewController = [DXListViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+    
+    self.window.rootViewController = navigationController;
+    
     return YES;
 }
 
