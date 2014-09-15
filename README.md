@@ -38,20 +38,24 @@ Review principles of the UITableView datasource and delegate and the UITextField
 
 ##NSDictionaries and NSUserDefaults
 
-###Step 5: Store title and text to NSUserDefaults
+###Step 5: Add save
+- Add a save: method to DetailViewController
+- In the textFieldDidEndEdinting method call save
+- In the textViewDidChange method call save
+
+###Step 6: Store title and text to NSUserDefaults
 - Add a static key for entry
 - Add a static key for title
 - Add a static key for text
-- Add a save method to DetailViewController
 - In the save method create a dictionary with the title string for the title key and the text string for text key
 - Store the dictionary in NSUserDefaults for the entry key
 
-###Step 6: Update the view with a dictionary
+###Step 7: Update the view with a dictionary
 - Add an updateWithDictionary method that accepts a dictionary
 - Retrieve a string from the dictionary with the title key and update the title field
 - Retrieve a string from the dictionary with the text key and update the text view
 
-###Step 7: Retrieve entry from NSUserDefaults
+###Step 8: Retrieve entry from NSUserDefaults
 - In the viewDidLoad method retrieve a dictionary from user defaults for the entry key
 - Call the updateWithDictionary method and pass in the dictionary
 
