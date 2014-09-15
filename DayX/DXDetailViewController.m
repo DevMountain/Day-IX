@@ -8,9 +8,11 @@
 
 #import "DXDetailViewController.h"
 
-@interface DXDetailViewController () <UITextFieldDelegate>
+@interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, strong) IBOutlet UITextView *textView;
+@property (nonatomic, strong) IBOutlet UIButton *clearButton;
 
 @end
 
@@ -25,6 +27,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (IBAction)clear:(id)sender {
+    self.textField.text = @"";
+    self.textView.text = @"";
 }
 
 @end
