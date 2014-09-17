@@ -25,7 +25,7 @@ Review principles of the UITableView datasource and delegate and the UITextField
 - Add an IBOutlet UITextView property to the interface in the implementation file
 - Add a UITextView just under the title field the view controller in your XIB
 - Wire up the UITextView 'referencing outlet' to the 'textView' outlet on the view controller
-- Declare the viewcontroller as a UITextView
+- Declare the viewcontroller as a UITextViewDelegate
  
 ###Step 4: Add a clear button to the view controller
 - Add a IBOutlet UIButton property to the interface in the implementation file
