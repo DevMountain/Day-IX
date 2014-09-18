@@ -7,8 +7,11 @@
 //
 
 #import "DXDetailViewController.h"
+#import "EntryController.h"
 
 @interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
+
+@property (nonatomic, strong) NSDictionary *dictionary;
 
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, strong) IBOutlet UITextView *textView;
@@ -19,7 +22,8 @@
 @implementation DXDetailViewController
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
-
+    self.dictionary = dictionary;
+    
     self.textField.text = dictionary[TitleKey];
     self.textView.text = dictionary[TextKey];
 }
@@ -30,8 +34,9 @@
     self.textField.delegate = self;
     self.textView.delegate = self;
     
-    NSDictionary *entry = [[NSUserDefaults standardUserDefaults] objectForKey:EntryKey];
-    [self updateWithDictionary:entry];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -39,27 +44,23 @@
     return YES;
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
-    [self save:textView];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [self save:textField];
-}
-
 - (IBAction)clear:(id)sender {
     self.textField.text = @"";
     self.textView.text = @"";
-    
-    [self save:sender];
 }
 
-- (void)save:(id)sender {
-    
-    NSDictionary *entry = @{TitleKey: self.textField.text, TextKey: self.textView.text};
-    [[NSUserDefaults standardUserDefaults] setObject:entry forKey:EntryKey];
+- (IBAction)save:(id)sender {
 
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSDictionary *entry = @{TitleKey: self.textField.text, TextKey: self.textView.text};
+    
+    if (self.dictionary) {
+        [[EntryController sharedInstance] replaceEntry:self.dictionary withEntry:entry];
+    } else {
+        [[EntryController sharedInstance] addEntry:entry];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 @end

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 static NSString * const EntryKey = @"entry";
-static NSString * const TitleKey = @"title";
-static NSString * const TextKey = @"text";
 
 @interface DXDetailViewController : UIViewController
+
+- (void)updateWithDictionary:(NSDictionary *)dictionary;
 
 @end
