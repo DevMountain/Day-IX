@@ -48,7 +48,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     DXDetailViewController *detailViewController = [DXDetailViewController new];
-    [detailViewController updateWithDictionary:[EntryController sharedInstance].entries[indexPath.row]];
+    [detailViewController updateWithEntry:[EntryController sharedInstance].entries[indexPath.row]];
     [self.navigationController pushViewController:detailViewController animated:YES];
 
 }

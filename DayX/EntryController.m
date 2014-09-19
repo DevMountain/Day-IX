@@ -29,7 +29,7 @@ static NSString * const entryListKey = @"entryList";
     return sharedInstance;
 }
 
-- (void)addEntry:(NSDictionary *)entry {
+- (void)addEntry:(Entry *)entry {
 
     if (!entry) {
         return;
@@ -42,7 +42,7 @@ static NSString * const entryListKey = @"entryList";
     [self synchronize];
 }
 
-- (void)removeEntry:(NSDictionary *)entry {
+- (void)removeEntry:(Entry *)entry {
 
     if (!entry) {
         return;
@@ -56,7 +56,7 @@ static NSString * const entryListKey = @"entryList";
 
 }
 
-- (void)replaceEntry:(NSDictionary *)oldEntry withEntry:(NSDictionary *)newEntry {
+- (void)replaceEntry:(Entry *)oldEntry withEntry:(Entry *)newEntry {
 
     if (!oldEntry || !newEntry) {
         return;
@@ -73,19 +73,29 @@ static NSString * const entryListKey = @"entryList";
     [self synchronize];
 
     
-    
 }
 
 - (void)loadFromDefaults {
     
     NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entryListKey];
-    self.entries = entryDictionaries;
+    
+    NSMutableArray *entries = [NSMutableArray new];
+    for (NSDictionary *entry in entryDictionaries) {
+        [entries addObject:[[Entry alloc] initWithDictionary:entry]];
+    }
+    
+    self.entries = entries;
     
 }
 
 - (void)synchronize {
     
-    [[NSUserDefaults standardUserDefaults] setObject:self.entries forKey:entryListKey];
+    NSMutableArray *entryDictionaries = [NSMutableArray new];
+    for (Entry *entry in self.entries) {
+        [entryDictionaries addObject:[entry entryDictionary]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:entryDictionaries forKey:entryListKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }

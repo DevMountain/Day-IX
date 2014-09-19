@@ -11,7 +11,7 @@
 
 @interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
-@property (nonatomic, strong) NSDictionary *dictionary;
+@property (nonatomic, strong) Entry *entry;
 
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, strong) IBOutlet UITextView *textView;
@@ -21,11 +21,11 @@
 
 @implementation DXDetailViewController
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary {
-    self.dictionary = dictionary;
+- (void)updateWithEntry:(Entry *)entry {
+    self.entry = entry;
     
-    self.textField.text = dictionary[TitleKey];
-    self.textView.text = dictionary[TextKey];
+    self.textField.text = entry.title;
+    self.textView.text = entry.text;
 }
 
 - (void)viewDidLoad {
@@ -33,6 +33,9 @@
 
     self.textField.delegate = self;
     self.textView.delegate = self;
+ 
+    self.textField.text = self.entry.title;
+    self.textView.text = self.entry.text;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -51,10 +54,10 @@
 
 - (IBAction)save:(id)sender {
 
-    NSDictionary *entry = @{TitleKey: self.textField.text, TextKey: self.textView.text};
+    Entry *entry = [[Entry alloc] initWithDictionary:@{titleKey: self.textField.text, textKey: self.textView.text}];
     
-    if (self.dictionary) {
-        [[EntryController sharedInstance] replaceEntry:self.dictionary withEntry:entry];
+    if (self.entry) {
+        [[EntryController sharedInstance] replaceEntry:self.entry withEntry:entry];
     } else {
         [[EntryController sharedInstance] addEntry:entry];
     }

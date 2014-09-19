@@ -22,7 +22,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
-    cell.textLabel.text = [EntryController sharedInstance].entries[indexPath.row][TitleKey];
+    
+    Entry *entry = [EntryController sharedInstance].entries[indexPath.row];
+    cell.textLabel.text = entry.title;
+    
     return cell;
 }
 

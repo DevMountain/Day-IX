@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-static NSString * const TitleKey = @"title";
-static NSString * const TextKey = @"text";
+#import "Entry.h"
 
 @interface EntryController : NSObject
 
@@ -17,8 +15,8 @@ static NSString * const TextKey = @"text";
 
 + (EntryController *)sharedInstance;
 
-- (void)addEntry:(NSDictionary *)entry;
-- (void)removeEntry:(NSDictionary *)entry;
-- (void)replaceEntry:(NSDictionary *)oldEntry withEntry:(NSDictionary *)newEntry;
+- (void)addEntry:(Entry *)entry;
+- (void)removeEntry:(Entry *)entry;
+- (void)replaceEntry:(Entry *)oldEntry withEntry:(Entry *)newEntry;
 
 @end
