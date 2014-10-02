@@ -1,5 +1,5 @@
 //
-//  DBStack.h
+//  Stack.h
 //  Core Data Bank
 //
 //  Created by Joshua Howland on 6/12/14.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DBStack : NSObject
+@interface Stack : NSObject
 
-+ (DBStack *)sharedInstance;
++ (Stack *)sharedInstance;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end

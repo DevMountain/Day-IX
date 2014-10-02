@@ -20,7 +20,7 @@
 		711A508D19388096005642EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 711A508B19388096005642EF /* InfoPlist.strings */; };
 		711A508F19388096005642EF /* DayXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A508E19388096005642EF /* DayXTests.m */; };
 		715A720319DDD1C200895248 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 715A720119DDD1C200895248 /* Model.xcdatamodeld */; };
-		715A720719DDD27700895248 /* DBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 715A720619DDD27700895248 /* DBStack.m */; };
+		715A720719DDD27700895248 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 715A720619DDD27700895248 /* Stack.m */; };
 		715A720A19DDD2B000895248 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 715A720919DDD2B000895248 /* Entry.m */; };
 		7160740219CADDA500D730CF /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160740119CADDA500D730CF /* EntryController.m */; };
 		7160740519CAE03C00D730CF /* DXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160740419CAE03C00D730CF /* DXListViewController.m */; };
@@ -57,8 +57,8 @@
 		711A508C19388096005642EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		711A508E19388096005642EF /* DayXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayXTests.m; sourceTree = "<group>"; };
 		715A720219DDD1C200895248 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		715A720519DDD27700895248 /* DBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBStack.h; sourceTree = "<group>"; };
-		715A720619DDD27700895248 /* DBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBStack.m; sourceTree = "<group>"; };
+		715A720519DDD27700895248 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		715A720619DDD27700895248 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		715A720819DDD2B000895248 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		715A720919DDD2B000895248 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		7160740019CADDA500D730CF /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
@@ -177,8 +177,8 @@
 		715A720419DDD22300895248 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				715A720519DDD27700895248 /* DBStack.h */,
-				715A720619DDD27700895248 /* DBStack.m */,
+				715A720519DDD27700895248 /* Stack.h */,
+				715A720619DDD27700895248 /* Stack.m */,
 				715A720119DDD1C200895248 /* Model.xcdatamodeld */,
 				715A720819DDD2B000895248 /* Entry.h */,
 				715A720919DDD2B000895248 /* Entry.m */,
@@ -287,7 +287,7 @@
 			files = (
 				7160740819CAE06500D730CF /* DXListTableViewDataSource.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
-				715A720719DDD27700895248 /* DBStack.m in Sources */,
+				715A720719DDD27700895248 /* Stack.m in Sources */,
 				715A720A19DDD2B000895248 /* Entry.m in Sources */,
 				715A720319DDD1C200895248 /* Model.xcdatamodeld in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,

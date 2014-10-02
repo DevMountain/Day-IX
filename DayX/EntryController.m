@@ -26,7 +26,7 @@
 - (NSArray *)entries {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Entry"];
-    NSArray *objects = [[DBStack sharedInstance].managedObjectContext executeFetchRequest:request error:NULL];
+    NSArray *objects = [[Stack sharedInstance].managedObjectContext executeFetchRequest:request error:NULL];
     return objects;
     
 }
@@ -35,7 +35,7 @@
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date {
 
     Entry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
-                                                   inManagedObjectContext:[DBStack sharedInstance].managedObjectContext];
+                                                   inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     entry.title = title;
     entry.text = text;
     entry.timestamp = date;
@@ -52,7 +52,7 @@
 }
 
 - (void)synchronize {
-    [[DBStack sharedInstance].managedObjectContext save:NULL];
+    [[Stack sharedInstance].managedObjectContext save:NULL];
     
 }
 

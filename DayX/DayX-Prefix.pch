@@ -15,5 +15,5 @@
     #import <Foundation/Foundation.h>
 
     #import <CoreData/CoreData.h>
-    #import "DBStack.h"
+    #import "Stack.h"
 #endif

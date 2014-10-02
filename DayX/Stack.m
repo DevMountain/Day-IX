@@ -1,26 +1,26 @@
 //
-//  DBStack.m
+//  Stack.m
 //  Core Data Bank
 //
 //  Created by Joshua Howland on 6/12/14.
 //  Copyright (c) 2014 DevMountain. All rights reserved.
 //
 
-#import "DBStack.h"
+#import "Stack.h"
 
-@interface DBStack ()
+@interface Stack ()
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
 
-@implementation DBStack
+@implementation Stack
 
-+ (DBStack *)sharedInstance {
-    static DBStack *sharedInstance = nil;
++ (Stack *)sharedInstance {
+    static Stack *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[DBStack alloc] init];
+        sharedInstance = [[Stack alloc] init];
     });
     return sharedInstance;
 
