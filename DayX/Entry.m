@@ -1,40 +1,18 @@
 //
 //  Entry.m
-//  Entries
+//  DayX
 //
-//  Created by Joshua Howland on 9/19/14.
+//  Created by Joshua Howland on 10/2/14.
 //  Copyright (c) 2014 DevMountain. All rights reserved.
 //
 
 #import "Entry.h"
 
+
 @implementation Entry
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
-    self = [super init];
-    if (self) {
-        self.title = dictionary[titleKey];
-        self.text = dictionary[textKey];
-        self.timestamp = dictionary[timestampKey];
-    }
-    return self;
-}
-
-- (NSDictionary *)entryDictionary {
-
-    NSMutableDictionary *entryDictionary = [NSMutableDictionary new];
-    if (self.title) {
-        [entryDictionary setObject:self.title forKey:titleKey];
-    }
-    if (self.text) {
-        [entryDictionary setObject:self.text forKey:textKey];
-    }
-    if (self.timestamp) {
-        [entryDictionary setObject:self.timestamp forKey:timestampKey];
-    }
-    
-    return entryDictionary;
-
-}
+@dynamic title;
+@dynamic text;
+@dynamic timestamp;
 
 @end
