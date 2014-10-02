@@ -162,3 +162,55 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
   - Set the text of your title and text to the entry's values
 - In the save method, create a new Entry with the title and text from the detail view's fields
 - Check to see if self.entry != nil and the if it does replace self.entry with entry, otherwise just add entry to the EntryController
+
+
+
+##Core Data
+
+###Step 21: Add a Core Data model and replace Entry object
+- In "File -> New" create a file called Model.xcdatamodel
+- Click the add Entity button at the bottom of the window
+- Name the entity Entry, and give it title, text and timestamp properties with appropriate types
+- Delete the Entry files you already have
+- In Editor, Create NSManagedObject subclass, export an Entry object
+
+###Step 22: Create a Core Data stack file
+- Create a file called DBStack
+- Add CoreData and DBStack to the prefix.pch file
+- Give DBStack a sharedInstance class method
+- Give it a readonly managedObjectContext property
+
+###Step 23: Set up your DBStack
+- Create a method called setupManagedObjectContext
+- You're going to need 3 things:
+ - StoreURL, ModelURL and ManagedObjectModel
+  - The storeURL is a URL to your documents directory with a sqlite file for you to name. I typically just name mine db.sqlite
+  - The modelURL is a URL to your bundle files with the name Model (or whatever you named your core data model file) and the extension momd
+  - The managedObjectModel should be a NSManagedObjectModel with the contents of modelURL
+  - Then you an instantiate your self.managedObjectContext in the setupManagedObjectContext method using these values.
+ - You can put them inline in your setupManagedObjectContext method, or you can separate them out
+- In the init method (or sharedInstance method) call setupManagedObjectContext
+
+###Step 24: Update your EntryController
+- You need to update the add method so that it's addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date.
+ - You can keep using a dictionary if you want, but this is a bit more simple
+- Remove the replace entry method. We can now update entries in place.
+- Don't you love deleting code? 
+ - Delete the entryListKey 
+ - Delete the entries property
+ - Delete the 'loadFromDefaults' method and callers
+ - Delte the addEntryMethod
+- Update the entries method to use a fetchRequest to get the list of entries. For now just return them all.
+ - Later we could add search text as a parameter of the fetchRequest
+- Add the addEntryWithTitle:text:date: method
+ - Insert a new entity assign the properties and then call synchronize.
+- Update the removeEntry method
+ - Delete the entry from it's own managedObjectContext and then synchronize
+- The synchronize method should just call save on the main managedObjectContext
+- Make synchronize a public method
+
+###Step 25: Update the save method in your detail view controller
+- If there is an entry, update the properties and call synchronize
+- If there isn't an entry, call addEntryWithTitle:text:date: and pass in the values. 
+ 
+#Boom.
