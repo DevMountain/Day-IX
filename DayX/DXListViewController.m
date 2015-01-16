@@ -10,8 +10,6 @@
 #import "DXListTableViewDataSource.h"
 #import "DXDetailViewController.h"
 
-#import "EntryController.h"
-
 @interface DXListViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -46,11 +44,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    DXDetailViewController *detailViewController = [DXDetailViewController new];
-    [detailViewController updateWithDictionary:[EntryController sharedInstance].entries[indexPath.row]];
-    [self.navigationController pushViewController:detailViewController animated:YES];
-
 }
 
 - (void)add:(id)sender {

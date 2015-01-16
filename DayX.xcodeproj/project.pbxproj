@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4FF7BCF01A688B9F007AB98B /* DXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7BCED1A688B9F007AB98B /* DXListViewController.m */; };
 		4FF7BCF11A688B9F007AB98B /* DXListTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7BCEE1A688B9F007AB98B /* DXListTableViewDataSource.m */; };
+		4FF7BCF41A688C36007AB98B /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF7BCF31A688C36007AB98B /* Entry.m */; };
 		711A506A19388095005642EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506919388095005642EF /* Foundation.framework */; };
 		711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506B19388095005642EF /* CoreGraphics.framework */; };
 		711A506E19388095005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
@@ -40,6 +41,8 @@
 		4FF7BCED1A688B9F007AB98B /* DXListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListViewController.m; sourceTree = "<group>"; };
 		4FF7BCEE1A688B9F007AB98B /* DXListTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListTableViewDataSource.m; sourceTree = "<group>"; };
 		4FF7BCEF1A688B9F007AB98B /* DXListTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXListTableViewDataSource.h; sourceTree = "<group>"; };
+		4FF7BCF21A688C36007AB98B /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		4FF7BCF31A688C36007AB98B /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		711A506619388095005642EF /* DayX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A506919388095005642EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		711A506B19388095005642EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FF7BCF51A689455007AB98B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4FF7BCF21A688C36007AB98B /* Entry.h */,
+				4FF7BCF31A688C36007AB98B /* Entry.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		711A505D19388095005642EF = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +130,7 @@
 		711A506F19388095005642EF /* DayX */ = {
 			isa = PBXGroup;
 			children = (
+				4FF7BCF51A689455007AB98B /* Model */,
 				711A507819388095005642EF /* DXAppDelegate.h */,
 				711A507919388095005642EF /* DXAppDelegate.m */,
 				71B57C4619C758CB00EF6AE3 /* DXDetailViewController.h */,
@@ -259,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF7BCF41A688C36007AB98B /* Entry.m in Sources */,
 				4FF7BCF11A688B9F007AB98B /* DXListTableViewDataSource.m in Sources */,
 				4FF7BCF01A688B9F007AB98B /* DXListViewController.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,

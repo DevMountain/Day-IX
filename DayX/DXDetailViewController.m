@@ -14,14 +14,17 @@
 @property (nonatomic, strong) IBOutlet UITextView *textView;
 @property (nonatomic, strong) IBOutlet UIButton *clearButton;
 
+@property (nonatomic, strong) Entry *entry;
+
 @end
 
 @implementation DXDetailViewController
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary {
-
-    self.textField.text = dictionary[TitleKey];
-    self.textView.text = dictionary[TextKey];
+- (void)updateWithEntry:(Entry *)entry {
+    self.entry = entry;
+    
+    self.textField.text = entry.title;
+    self.textView.text = entry.text;
 }
 
 - (void)viewDidLoad {
@@ -30,8 +33,9 @@
     self.textField.delegate = self;
     self.textView.delegate = self;
     
-    NSDictionary *entry = [[NSUserDefaults standardUserDefaults] objectForKey:EntryKey];
-    [self updateWithDictionary:entry];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -54,12 +58,20 @@
     [self save:sender];
 }
 
-- (void)save:(id)sender {
+- (IBAction)save:(id)sender {
     
-    NSDictionary *entry = @{TitleKey: self.textField.text, TextKey: self.textView.text};
-    [[NSUserDefaults standardUserDefaults] setObject:entry forKey:EntryKey];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (!self.entry) {
+        self.entry = [[Entry alloc] init];
+        self.entry.title = self.textField.text;
+        self.entry.text = self.textView.text;
+    }
+    
+    NSMutableArray *entries = [Entry loadEntriesFromDefaults];
+    [entries addObject:self.entry];
+    
+    [Entry storeEntriesInDefaults:entries];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
