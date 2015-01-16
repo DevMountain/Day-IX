@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Entry.h"
 
 @interface DXDetailViewController : UIViewController
-
-- (void)updateWithEntry:(Entry *)entry;
 
 @end

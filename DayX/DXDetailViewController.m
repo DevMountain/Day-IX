@@ -7,6 +7,7 @@
 //
 
 #import "DXDetailViewController.h"
+#import "Entry.h"
 
 @interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -19,13 +20,6 @@
 @end
 
 @implementation DXDetailViewController
-
-- (void)updateWithEntry:(Entry *)entry {
-    self.entry = entry;
-    
-    self.textField.text = entry.title;
-    self.textView.text = entry.text;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,7 +53,7 @@
 }
 
 - (IBAction)save:(id)sender {
-    
+
     if (!self.entry) {
         self.entry = [[Entry alloc] init];
         self.entry.title = self.textField.text;
