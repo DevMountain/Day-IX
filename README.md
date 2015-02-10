@@ -114,7 +114,7 @@ Review principles of the UITableView datasource and delegate and the UITextField
 - Set self.tableView.dataSource = self.dataSource
 - Register self.tableView with the datasource
 
-###Step 17: Add a new entry button
+###Step 15: Add a new entry button
 - Create a method - (IBAction)add:(id)sender;
 - In that method instatiate a detailViewController and push it on your navigationController
 - Instatiate a UIBarButtonItem with the add: method as the selector. 
