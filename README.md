@@ -165,18 +165,14 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
   - Save self.entries to NSUserDefaults for key entryListKey
   - Call this method at the end of addEntry and removeEntry and replaceEntry methods
 
-###Step 20: Make the updateWithDictionary method public
-- Add an NSDictionary *dictionary as a property of the detailViewController
-- Add the updateWithDictionary method to the header file
-
-###Step 21: Update the save method in DetailViewController
+###Step 20: Update the save method in DetailViewController
 - Instantiate a UIBarButtonItem called saveButton with save: as the selector
 - Set the UIBarButtonItem to the rightBarButtonItem of the navigationItem
 - In the save method check to see if self.dictionary is nil
   - If it is nil, call [EntryController sharedInstance] addEntry 
   - If it is not nil, call [EntryController sharedInstance] replaceEntry and pass in self.dictionary as the one to be replaced
 
-###Step 20: Update the detailViewController with an entry 
+###Step 21: Update the detailViewController with an entry 
 - Add @class Entry; to the header view
 - Andd the method to updateWithEntry:(Entry *)entry;
 - In the updateWithEntry method
@@ -191,20 +187,20 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 
 ##Core Data
 
-###Step 21: Add a Core Data model and replace Entry object
+###Step 22: Add a Core Data model and replace Entry object
 - In "File -> New" create a file called Model.xcdatamodel
 - Click the add Entity button at the bottom of the window
 - Name the entity Entry, and give it title, text and timestamp properties with appropriate types
 - Delete the Entry files you already have
 - In Editor, Create NSManagedObject subclass, export an Entry object
 
-###Step 22: Create a Core Data stack file
+###Step 23: Create a Core Data stack file
 - Create a file called DBStack
 - Add CoreData and DBStack to the prefix.pch file
 - Give DBStack a sharedInstance class method
 - Give it a readonly managedObjectContext property
 
-###Step 23: Set up your DBStack
+###Step 24: Set up your DBStack
 - Create a method called setupManagedObjectContext
 - You're going to need 3 things:
  - StoreURL, ModelURL and ManagedObjectModel
@@ -215,7 +211,7 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
  - You can put them inline in your setupManagedObjectContext method, or you can separate them out
 - In the init method (or sharedInstance method) call setupManagedObjectContext
 
-###Step 24: Update your EntryController
+###Step 25: Update your EntryController
 - You need to update the add method so that it's addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date.
  - You can keep using a dictionary if you want, but this is a bit more simple
 - Remove the replace entry method. We can now update entries in place.
@@ -233,7 +229,7 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 - The synchronize method should just call save on the main managedObjectContext
 - Make synchronize a public method
 
-###Step 25: Update the save method in your detail view controller
+###Step 26: Update the save method in your detail view controller
 - If there is an entry, update the properties and call synchronize
 - If there isn't an entry, call addEntryWithTitle:text:date: and pass in the values. 
  
