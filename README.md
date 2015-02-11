@@ -103,7 +103,9 @@ Review principles of the UITableView datasource and delegate and the UITextField
 - In the header file, adopt the UITableViewDataSource protocol 
 - Add the required UITableViewDataSource methods to the implementation file
 - In numberOfRows call LoadEntriesFromDefaults and return the count
-- In cellForRowAtIndexPath return a cell with the textLabel.text get the entries from LoadEntriesFromDefaults and set to Entry at indexPath.row in the array
+- Set up your cellForRowAtIndexPath method
+- In your cellForRowAtIndexPath, use the LoadEntriesFromDefaults method to get an array of Entries
+- Dequeue a cell and set the textLabel.text to the entry title from the array that matches the indexPath for the row
 - Add a registerTableView method that takes a tableView parameter. In that method register a UITableViewCell to the tableview 
 
 ###Step 14: Add a tableview to the view
