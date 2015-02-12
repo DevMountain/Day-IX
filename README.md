@@ -202,7 +202,7 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
 - Add an index property to the DetailViewController
 - Add a viewControllerAtIndex method to the DataSource
   - if the index < 0 or >= count it return nil
-  - Initialize a DetailViewController and set the index and update with the Entry at the index from the EntryController
+  - Initialize a DetailViewController and set the index and update with the Entry (```updateWithEntry:(Entry *)```)at the index from the EntryController
 - Add viewControllerBeforeViewController method and get the index of the viewController, subract 1 and then call viewControllerAtIndex
 - Add viewControllerAfterViewController method and get the index of the viewController, add 1 and then call viewControllerAtIndex
 
