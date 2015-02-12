@@ -198,6 +198,7 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 A Page View Controller is a great fit for Day X. When you go to the detail view of a post, easily swipe left and right to the previous or next post rather than exiting back out to the list and tapping back in. We just need to set up a datasource and push UIPageViewController with DetailViewControllers inside of it rather than pushing DetailViewControllers.
 
 ###Step 23: Add a DetailPageViewControllerDataSource
+- Create a DetailPageViewControllerDataSource as a subclass of NSObject
 - Add an index property to the DetailViewController
 - Add a viewControllerAtIndex method
   - if the index < 0 or >= count it return nil
