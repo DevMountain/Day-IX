@@ -193,23 +193,50 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 - In the save method, update your entry object with the text and title values
 - Check to see if self.entry != nil and the if it does create a new self.entry with entry
 
+##Page View Controller
+
+A Page View Controller is a great fit for Day X. When you go to the detail view of a post, easily swipe left and right to the previous or next post rather than exiting back out to the list and tapping back in. We just need to set up a datasource and push UIPageViewController with DetailViewControllers inside of it rather than pushing DetailViewControllers.
+
+###Step 22: Add a DetailPageViewControllerDataSource
+- Add an index property to the DetailViewController
+- Add a viewControllerAtIndex method
+  - if the index < 0 or >= count it return nil
+  - Initialize a DetailViewController and set the index and update with the Entry at the index from the EntryController
+- Add viewControllerBeforeViewController method and get the index of the viewController, subract 1 and then call viewControllerAtIndex
+- Add viewControllerAfterViewController method and get the index of the viewController, add 1 and then call viewControllerAtIndex
+
+###Step 23: Add a DetailPageViewController
+- Create a DetailContainerViewController as a subclass of UIViewController
+  - Add a NSInteger property called initialIndex
+  - Add a UIPageViewController property (to the implementation file)
+  - Add a DetailPageViewControllerDataSource property (to the implementation file)
+- In the viewDidLoad method initialize the pageViewController
+- Also initialize the pageViewControllerDataSource
+- Call the setViewControllers method on the pageViewController and pass in the viewController at the initialIndex property from the pageViewControllerDataSource
+- Add the pageViewController as a childViewController of the DetailPageViewController
+- See gist: https://gist.github.com/jkhowland/b84b4f11aacce5ff4ca1
+
+###Step 24: Update the presentation of the detail view
+- In the ListViewController's didSelectRow method initialize a DXDetailPageViewController
+- Set the detailPageViewController's initialIndex
+- Push the detailPageViewController
 
 ##Core Data
 
-###Step 22: Add a Core Data model and replace Entry object
+###Step 25: Add a Core Data model and replace Entry object
 - In "File -> New" create a file called Model.xcdatamodel
 - Click the add Entity button at the bottom of the window
 - Name the entity Entry, and give it title, text and timestamp properties with appropriate types
 - Delete the Entry files you already have
 - In Editor, Create NSManagedObject subclass, export an Entry object
 
-###Step 23: Create a Core Data stack file
+###Step 26: Create a Core Data stack file
 - Create a file called DBStack
 - Add CoreData and DBStack to the prefix.pch file
 - Give DBStack a sharedInstance class method
 - Give it a readonly managedObjectContext property
 
-###Step 24: Set up your DBStack
+###Step 27: Set up your DBStack
 - Create a method called setupManagedObjectContext
 - You're going to need 3 things:
  - StoreURL, ModelURL and ManagedObjectModel
@@ -220,7 +247,7 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
  - You can put them inline in your setupManagedObjectContext method, or you can separate them out
 - In the init method (or sharedInstance method) call setupManagedObjectContext
 
-###Step 25: Update your EntryController
+###Step 28: Update your EntryController
 - You need to update the add method so that it's addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date.
  - You can keep using a dictionary if you want, but this is a bit more simple
 - Remove the replace entry method. We can now update entries in place.
@@ -238,8 +265,8 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 - The synchronize method should just call save on the main managedObjectContext
 - Make synchronize a public method
 
-###Step 26: Update the save method in your detail view controller
+###Step 29: Update the save method in your detail view controller
 - If there is an entry, update the properties and call synchronize
 - If there isn't an entry, call addEntryWithTitle:text:date: and pass in the values. 
- 
+
 #Boom.
