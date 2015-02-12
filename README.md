@@ -216,9 +216,9 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
 - Add the pageViewController as a childViewController of the DetailPageViewController
 
 ###Step 25: Update the presentation of the detail view
-- In the ListViewController's didSelectRow method initialize a DXDetailPageViewController
+- In the ListViewController's didSelectRow method initialize a DXContainerViewController
 - Set the detailPageViewController's initialIndex
-- Push the detailPageViewController
+- Push the containerViewController
 
 ##Core Data
 
