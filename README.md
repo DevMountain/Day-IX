@@ -152,8 +152,7 @@ An Object Controller should be the source of valid data for the entire app. In t
   - + (EntryController *)sharedInstance
   - - (void)addEntry:(Entry *)entry
   - - (void)removeEntry:(Entry *)entry
-  - - (void)replaceEntry:(Entry *)oldEntry withEntry:(Entry *)newEntry
-  
+
 The shared instance method should be defined to match the gist here:
 https://gist.github.com/jkhowland/89e24b5fb6e1b5048eb5
 
