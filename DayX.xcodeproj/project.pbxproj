@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FBD85D21A8CB3B600557592 /* DXDetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD85D11A8CB3B600557592 /* DXDetailPageViewController.m */; };
+		4FBD85D51A8CB42300557592 /* DXDetailPageViewControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD85D41A8CB42300557592 /* DXDetailPageViewControllerDataSource.m */; };
 		711A506A19388095005642EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506919388095005642EF /* Foundation.framework */; };
 		711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506B19388095005642EF /* CoreGraphics.framework */; };
 		711A506E19388095005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FBD85D01A8CB3B600557592 /* DXDetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDetailPageViewController.h; sourceTree = "<group>"; };
+		4FBD85D11A8CB3B600557592 /* DXDetailPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXDetailPageViewController.m; sourceTree = "<group>"; };
+		4FBD85D31A8CB42300557592 /* DXDetailPageViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDetailPageViewControllerDataSource.h; sourceTree = "<group>"; };
+		4FBD85D41A8CB42300557592 /* DXDetailPageViewControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXDetailPageViewControllerDataSource.m; sourceTree = "<group>"; };
 		711A506619388095005642EF /* DayX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A506919388095005642EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		711A506B19388095005642EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +140,10 @@
 				7160740419CAE03C00D730CF /* DXListViewController.m */,
 				7160740619CAE06500D730CF /* DXListTableViewDataSource.h */,
 				7160740719CAE06500D730CF /* DXListTableViewDataSource.m */,
+				4FBD85D01A8CB3B600557592 /* DXDetailPageViewController.h */,
+				4FBD85D11A8CB3B600557592 /* DXDetailPageViewController.m */,
+				4FBD85D31A8CB42300557592 /* DXDetailPageViewControllerDataSource.h */,
+				4FBD85D41A8CB42300557592 /* DXDetailPageViewControllerDataSource.m */,
 				71B57C4619C758CB00EF6AE3 /* DXDetailViewController.h */,
 				71B57C4719C758CB00EF6AE3 /* DXDetailViewController.m */,
 				71B57C4819C758CB00EF6AE3 /* DXDetailViewController.xib */,
@@ -271,7 +281,9 @@
 			files = (
 				7160740819CAE06500D730CF /* DXListTableViewDataSource.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
+				4FBD85D21A8CB3B600557592 /* DXDetailPageViewController.m in Sources */,
 				71247D1B19CCE96600E2BFA2 /* Entry.m in Sources */,
+				4FBD85D51A8CB42300557592 /* DXDetailPageViewControllerDataSource.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
 				7160740219CADDA500D730CF /* EntryController.m in Sources */,
 				7160740519CAE03C00D730CF /* DXListViewController.m in Sources */,

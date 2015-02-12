@@ -14,6 +14,8 @@ static NSString * const EntryKey = @"entry";
 
 @interface DXDetailViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger index;
+
 - (void)updateWithEntry:(Entry *)entry;
 
 @end
