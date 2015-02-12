@@ -8,30 +8,29 @@ Review principles of the UITableView datasource and delegate and the UITextField
 
 ##Interface Builder and Text Field Delegate
 
-###Step 1: Add a new ViewController as your root view controller
-- Create a new UIViewController subclass called DetailViewController **(make sure to select "Also create XIB file")**
-- Initialize and add the view controller as the root of a UINavigationController to the rootViewController of the window
+###Step 1: Add a new ```DetailViewController``` as your root view controller
+- Create a new UIViewController subclass called ```DetailViewController``` **(make sure to select "Also create XIB file")**
+- Initialize and add the view controller as the root of a UINavigationController to the ```rootViewController``` of the window
 
 ###Step 2: Add a text field to the view controller
-- Add an IBOutlet UITextField property to the interface in the implementation file
 - Add a UITextField to the top of the view controller in your XIB
+- Add an IBOutlet UITextField property to the interface in the implementation file
 - Wire up the UITextField 'referencing outlet' to the 'textField' outlet on the view controller
-- Declare the viewcontroller as a UITextFieldDelegate
-- Add the textFieldShouldReturn method to the class 
-- In the method have the textField resign first responder
-- In the viewDidLoad method set self as the delegate of the textField
+- Declare the viewcontroller as a ```<UITextFieldDelegate>```
+- Add the ```textFieldShouldReturn``` method to the class 
+- In the method, have the ```textField``` resign first responder
+- In the ```viewDidLoad``` method set ```self``` as the delegate of the ```textField```
 
 ###Step 3: Add a text view to the view controller
 - Add an IBOutlet UITextView property to the interface in the implementation file
 - Add a UITextView just under the title field the view controller in your XIB
 - Wire up the UITextView 'referencing outlet' to the 'textView' outlet on the view controller
-- Declare the viewcontroller as a UITextViewDelegate
+- Declare the viewcontroller as a ```<UITextViewDelegate>```
  
 ###Step 4: Add a clear button to the view controller
 - Add a IBOutlet UIButton property to the interface in the implementation file
 - Add a UIButton just to the right of the title field above the text view in the view controller in your XIB
-- Wire up the UIButton 'referencing outlet' to the 'button' outlet on the view controller
-- Add an IBAction method called clear to your implementation file
+- Add an IBAction method called ```clear``` to your implementation file
 - Wire up the UIButton 'TouchUpInside' control event to your action
 - In the action set the title field and text view's content to empty strings
 
@@ -39,113 +38,115 @@ Review principles of the UITableView datasource and delegate and the UITextField
 ##NSDictionaries and NSUserDefaults
 
 ###Step 5: Add save
-- Add a save: method to DetailViewController
-- In the textFieldDidEndEdinting method call save
-- In the textViewDidChange method call save
+- Add a ```save``` method to ```DetailViewController```
+- Implement the ```textFieldDidEndEditing``` delegate method and, in the ```textFieldDidEndEditing``` method, call save
+- Repeat with ```textViewDidChange``` delegate method
+- *Don't forget to set the UITextView's ```delegate``` to ```self```*
 
-###Step 6: Store title and text to NSUserDefaults
+###Step 6: Store title and body text to NSUserDefaults
 - Add a static key for entry
 - Add a static key for title
-- Add a static key for text
-- In the save method create a dictionary with the title string for the title key and the text string for text key
+- Add a static key for body text
+- In the ```save``` method, create a dictionary with the title string for the title key and the body text string for body text key
 - Store the dictionary in NSUserDefaults for the entry key
 
 ###Step 7: Update the view with a dictionary
-- Add an updateWithDictionary method that accepts a dictionary
-- Retrieve a string from the dictionary with the title key and update the title field
-- Retrieve a string from the dictionary with the text key and update the text view
+- Add an ```updateViewWithDictionary:``` method that accepts a dictionary
+- Retrieve a string from the parameter dictionary with the title key and update the title field
+- Retrieve a string from the parameter dictionary with the text key and update the text view
 
 ###Step 8: Retrieve entry from NSUserDefaults
-- In the viewDidLoad method retrieve a dictionary from user defaults for the entry key
-- Call the updateWithDictionary method and pass in the dictionary
+- In the ```viewDidLoad``` method retrieve a dictionary from user defaults for the entry key
+- Call the ```updateWithDictionary:``` method and pass in the dictionary retrieved above
 
 ##Custom Model Objects and UITableView
 
 ###Step 9: Create an Entry Object
-- Create an Entry with properties:
-  - Title (NSString strong)
-  - Text (NSString strong)
-  - Timestamp (NSDate strong)
+- Create an ```Entry``` subclass (of NSObject) with public properties:
+  - ```title``` (NSString*  strong)
+  - ```bodyText``` (NSString*  strong)
+  - ```timestamp``` (NSDate* strong)
 
 ###Step 10: Add Dictionary Representations of Entries
 - Add two methods to the header of Entry
-  - -(NSDictionary *)entryDictionary
-  - -(id)initWithDictionary:(NSDictionary *)dictionary
+  - ```-(NSDictionary *)entryDictionary;```
+  - ```-(id)initWithDictionary:(NSDictionary *)dictionary;```
 - Add the methods to the implementation file
-- Add a const key for each of the properties (i.e. titleKey, textKey)
-- In the dictionary method create a mutable dictionary and then add each of the properties for their key
+- Add a static key for each of the properties (i.e. ```titleKey```, ```bodyKey```)
+- In the ```entryDictionary``` method, create a mutable dictionary and then add each of the properties for their key
   - Note: You can't insert a nil object. So you'll want to check those objects before you add them
-  - if (title != nil) { [dictionary addObject:title forKey:titleKey] }
-- In the init method you'll set the properties to the values for keys from the dictionary
+  - ```if (title != nil) { [dictionary addObject:title forKey:titleKey] }```
+- In the ```initWithDictionary:``` method you'll set the properties to the values for keys from the dictionary parameter
 
 ###Step 11: Add methods to store and retrieve Entries from NSUserDefaults
-- Add two methods to the header of Entry
-  - + (NSMutableArray *)loadEntriesFromDefaults
-  - + (void)storeEntriesInDefaults:(NSArray *)entries
+- Add two methods to the header of ```Entry```
+  - ```+ (NSMutableArray *)loadEntriesFromDefaults;````
+  - ```+ (void)storeEntriesInDefaults:(NSArray *)entries;````
 - Add the methods to the implementation file
-  - For the loadFromDefaults you'll have 4 steps
-    - Get the entryDictionaries from NSUserDefaults for the entryListKey
-    - Create a mutable array called entries
-    - Iterate through (for loop) the dictionaries in entryDictionaries and for each dictionary intialize an entry and put that entry in the mutable entries array
-    - Return the mutable array
-  - For the storeEntriesInDefaults method you'll have 3 steps
-    - Create a mutable array called entryDictionaries
-    - Iterate through (for loop) the entries passed in and for each entry add the dictionary representation to entryDictionaries
-    - Save entryDictionaries to NSUserDefaults for the entryListKey
+  - For the ```loadEntriesFromDefaults``` you'll have 4 steps
+    1. Get the ```dictionaryOfEntries``` from NSUserDefaults for the ```entryKey```
+    2. Create a mutable array called ```entriesArray```
+    3. Iterate through (for loop) the dictionaries in ```dictionaryOfEntries``` and for each: intialize an entry and put that entry in the mutable entries array
+    4. Return the mutable array, ```entriesArray```
+  - For the ```storeEntriesInDefaults:``` method you'll have 3 steps
+    1. Create a mutable array called ```arrayOfEntryDictionaries```
+    2. Iterate through (for loop) the entries passed in and for each entry add the dictionary representation to ```arrayOfEntryDictionaries```
+    3. Save ```arrayOfEntryDictionaries``` to NSUserDefaults for the ```entryKey```
 
-###Step 12: Create a ListViewController and add to window's rootViewController
-- Create a UIViewController called ListViewController
-- In the AppDelegate didFinishLaunching method initialize a UINavigationController with a listViewController instance as the rootViewController
-- Make the navigationController the rootViewController of the window.
+###Step 12: Create a ```ListViewController``` and add to window's rootViewController
+- Create a UIViewController called ```ListViewController```
+- In the ```AppDelegate``` ```didFinishLaunching``` method initialize a UINavigationController with a ```listViewController``` instance as the ```rootViewController```
+- Make the ```navigationController``` the ```rootViewController``` of the window.
 
 ###Step 13: Add a new tableViewDatasource
-- Create a NSObject subclass called ListTableViewDataSource
-- In the header file, adopt the UITableViewDataSource protocol 
-- Add the required UITableViewDataSource methods to the implementation file
-- In numberOfRows call LoadEntriesFromDefaults and return the count
-- Set up your cellForRowAtIndexPath method
-- In your cellForRowAtIndexPath, use the LoadEntriesFromDefaults method to get an array of Entries
-- Dequeue a cell and set the textLabel.text to the entry title from the array that matches the indexPath for the row
-- Add a registerTableView method that takes a tableView parameter. In that method register a UITableViewCell to the tableview 
+- Create an NSObject subclass called ```ListTableViewDataSource```
+- In the header file, adopt the ```<UITableViewDataSource>``` protocol 
+- Add the required ```<UITableViewDataSource>``` methods to the implementation file
+- In ```tableView:numberOfRowsInSection:``` call ```loadEntriesFromDefaults``` and return the ```count```
+- In ```tableView:cellForRowAtIndexPath:``` return a cell with the ```textLabel.text``` set to the ```title``` of Entry
+ - HINT: get the entries from ```loadEntriesFromDefaults``` and get the ```Entry``` at ```indexPath.row``` in the array
+- Add a public ```registerTableView:``` method that takes a UITableView parameter. 
+- In that method, register a UITableViewCell to the tableView 
 
 ###Step 14: Add a tableview to the view
-- Add a UITableView as a property on the listViewController class
-- Initialize and add the tableView as a subview of the main view
-- Add a ListTableViewDataSoure as a property on the listViewController class
-- Initialize a listTableViewDataSource and set it to self.dataSource
-- Set self.tableView.dataSource = self.dataSource
-- Register self.tableView with the datasource
+- Add a UITableView as a property on the ```ListViewController``` class
+- Initialize and add the ```tableView``` as a subview of the main view
+- Add a ```ListTableViewDataSource``` as a property on the ```ListViewController``` class
+- Initialize a ```listTableViewDataSource``` and set it to ```self.dataSource```
+- Set ```self.tableView.dataSource = self.dataSource```
+- Register ```self.tableView``` with the ```dataSource```
 
 ###Step 15: Add a new entry button
-- Create a method - (IBAction)add:(id)sender;
-- In that method instatiate a detailViewController and push it on your navigationController
-- Instatiate a UIBarButtonItem with the add: method as the selector. 
+- Create a method ```- (void)addNewEntry;```
+- In that method instatiate a ```DetailViewController``` and ```push``` it on your navigationController
+- Instatiate a UIBarButtonItem with the ```addNewEntry``` method as the selector. 
 - Set the UIBarButtonItem as the right bar button item.
 
 ###Step 16: Handle tableViewCellSelection
-- Set listViewController as the delegate of it's tableView
-- in the didSelectRow method immediately deselect the cell
-- instantiate the detailViewController
-- run 'updateWithDictionary' on the detailViewController and pass in the dictionary for the indexPath.row
-- present the detailViewController
+- Set ```ListViewController``` as the ```delegate``` of it's tableView
+- In the ```tableView:didSelectRowAtIndexPath``` method immediately deselect the cell
 
-###Step 17: Update save in your detailViewController
-- Add an Entry property to the detailViewController
-- Create a right barButtonItem in the viewDidLoad method that calls save:
-- In the save method check to see if self.entry == nil
-- If it's nil create a new entry and set it to self.entry
-- Set the properties of self.entry to the title and textfield text values
-- Grab the array of entries from [Entry loadEntriesFromDefaults]
-- And self.entry to the array
-- Call [Entry storeEntriesInDefaults:self.entry] and pass in self.entry
-- Pop the viewController
+###Step 17: Update save in your ```DetailViewController```
+- Add an Entry property to the ```DetailViewController```
+- Create a right barButtonItem in the ```viewDidLoad``` method that calls save:
+- In the save method check to see ```if (self.entry == nil)```
+- If it's nil create a new entry and set it to ```self.entry```
+- Set the properties of ```self.entry``` to the title and textfield text values
+- Grab the array of entries from ```[Entry loadEntriesFromDefaults]```
+- And ```self.entry``` to the array
+- Call ```[Entry storeEntriesInDefaults:self.entry]``` and pass in self.entry
+- ```Pop``` the viewController
+- 
+###Step 18: Remove code
+- Remove ```NSDictionary *entryDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:entryKey]; [self updateViewWithDictionary:entryDictionary];``` from your ```DetailViewController``` ```viewDidLoad``` method
+- Remove the call to ```save``` in the ```textFieldDidEndEditing:``` and ```textViewDidEndEditing```
 
 
 ##Object Controllers
 
 An Object Controller should be the source of valid data for the entire app. In this case we will create an EntryController to manage our Entry objects and to handle communication between the view controllers and NSUserDefaults. The EntryController will be a shared instance with an NSArray property that holds all of the entries the app has saved. We will migrate our saveToDefaults and loadEntriesFromDefaults methods from the Entry object to the EntryController object as helper methods that will save our Entry objects as NSDictionaries into NSUserDefaults, and grab NSDictionaries from NSUserDefaults and convert them into Entry objects. 
 
-###Step 18: Create an EntryController Object
+###Step 19: Create an EntryController Object
 - Create an EntryController with property:
   - Entries (NSArray strong, readonly)
 - And methods:
@@ -162,7 +163,7 @@ The removeEntry method needs to do the reverse. It should create a mutable copy 
 
 The replaceEntry method needs to find the index of the oldEntry and replace it if it exists. It should create a mutable copy of the entries array, check to see if it contains oldEntry, and then if it does find the index and replace object at index.
 
-###Step 19: Update the controller to store the dictionary Entries to NSUserDefaults
+###Step 20: Update the controller to store the dictionary Entries to NSUserDefaults
 - Add a method 'loadFromDefaults' (similar to the loadFromDefaults method currently on Entry)
   - Add a static string for the entryListKey
   - Get an arry "entryDictionaries" from NSUserDefaults for the entryListKey
@@ -173,14 +174,14 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
   - This method will need to convert from Entry objects to NSDictionaries before saving to NSUserDefaults (entryDictionary)
   - Call this method at the end of addEntry and removeEntry and replaceEntry methods
 
-###Step 20: Update the save method in DetailViewController
+###Step 21: Update the save method in DetailViewController
 - Instantiate a UIBarButtonItem called saveButton with save: as the selector
 - Set the UIBarButtonItem to the rightBarButtonItem of the navigationItem
 - In the save method check to see if self.dictionary is nil
   - If it is nil, call [EntryController sharedInstance] addEntry 
   - If it is not nil, call [EntryController sharedInstance] replaceEntry and pass in self.dictionary as the one to be replaced
 
-###Step 21: Update the detailViewController with an entry 
+###Step 22: Update the detailViewController with an entry 
 - Add @class Entry; to the header view (this is similar to importing, but we already imported Entry in the .m file, so we can use @class in the header)
 - Add a method updateWithEntry:(Entry *)entry that will update the detail view
 - Update your listViewController's didSelectRowAtIndexPath method to use the updateWithEntry method instead of updateWithDictionary
@@ -196,7 +197,7 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
 
 A Page View Controller is a great fit for Day X. When you go to the detail view of a post, easily swipe left and right to the previous or next post rather than exiting back out to the list and tapping back in. We just need to set up a datasource and push UIPageViewController with DetailViewControllers inside of it rather than pushing DetailViewControllers.
 
-###Step 22: Add a DetailPageViewControllerDataSource
+###Step 23: Add a DetailPageViewControllerDataSource
 - Add an index property to the DetailViewController
 - Add a viewControllerAtIndex method
   - if the index < 0 or >= count it return nil
@@ -204,7 +205,7 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
 - Add viewControllerBeforeViewController method and get the index of the viewController, subract 1 and then call viewControllerAtIndex
 - Add viewControllerAfterViewController method and get the index of the viewController, add 1 and then call viewControllerAtIndex
 
-###Step 23: Add a DetailPageViewController
+###Step 24: Add a DetailPageViewController
 - Create a DetailContainerViewController as a subclass of UIViewController
   - Add a NSInteger property called initialIndex
   - Add a UIPageViewController property (to the implementation file)
@@ -214,27 +215,27 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
 - Call the setViewControllers method on the pageViewController and pass in the viewController at the initialIndex property from the pageViewControllerDataSource
 - Add the pageViewController as a childViewController of the DetailPageViewController
 
-###Step 24: Update the presentation of the detail view
+###Step 25: Update the presentation of the detail view
 - In the ListViewController's didSelectRow method initialize a DXDetailPageViewController
 - Set the detailPageViewController's initialIndex
 - Push the detailPageViewController
 
 ##Core Data
 
-###Step 25: Add a Core Data model and replace Entry object
+###Step 26: Add a Core Data model and replace Entry object
 - In "File -> New" create a file called Model.xcdatamodel
 - Click the add Entity button at the bottom of the window
 - Name the entity Entry, and give it title, text and timestamp properties with appropriate types
 - Delete the Entry files you already have
 - In Editor, Create NSManagedObject subclass, export an Entry object
 
-###Step 26: Create a Core Data stack file
+###Step 27: Create a Core Data stack file
 - Create a file called DBStack
 - Add CoreData and DBStack to the prefix.pch file
 - Give DBStack a sharedInstance class method
 - Give it a readonly managedObjectContext property
 
-###Step 27: Set up your DBStack
+###Step 28: Set up your DBStack
 - Create a method called setupManagedObjectContext
 - You're going to need 3 things:
  - StoreURL, ModelURL and ManagedObjectModel
@@ -245,7 +246,7 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
  - You can put them inline in your setupManagedObjectContext method, or you can separate them out
 - In the init method (or sharedInstance method) call setupManagedObjectContext
 
-###Step 28: Update your EntryController
+###Step 29: Update your EntryController
 - You need to update the add method so that it's addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date.
  - You can keep using a dictionary if you want, but this is a bit more simple
 - Remove the replace entry method. We can now update entries in place.
@@ -263,7 +264,7 @@ A Page View Controller is a great fit for Day X. When you go to the detail view 
 - The synchronize method should just call save on the main managedObjectContext
 - Make synchronize a public method
 
-###Step 29: Update the save method in your detail view controller
+###Step 30: Update the save method in your detail view controller
 - If there is an entry, update the properties and call synchronize
 - If there isn't an entry, call addEntryWithTitle:text:date: and pass in the values. 
 
