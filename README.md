@@ -125,6 +125,9 @@ Review principles of the UITableView datasource and delegate and the UITextField
 ###Step 16: Handle tableViewCellSelection
 - Set listViewController as the delegate of it's tableView
 - in the didSelectRow method immediately deselect the cell
+- instantiate the detailViewController
+- run 'updateWithDictionary' on the detailViewController and pass in the dictionary for the indexPath.row
+- present the detailViewController
 
 ###Step 17: Update save in your detailViewController
 - Add an Entry property to the detailViewController
@@ -137,7 +140,10 @@ Review principles of the UITableView datasource and delegate and the UITextField
 - Call [Entry storeEntriesInDefaults:self.entry] and pass in self.entry
 - Pop the viewController
 
+
 ##Object Controllers
+
+An Object Controller should be the source of valid data for the entire app. In this case we will create an EntryController to manage our Entry objects and to handle communication between the view controllers and NSUserDefaults. The EntryController will be a shared instance with an NSArray property that holds all of the entries the app has saved. We will migrate our saveToDefaults and loadEntriesFromDefaults methods from the Entry object to the EntryController object as helper methods that will save our Entry objects as NSDictionaries into NSUserDefaults, and grab NSDictionaries from NSUserDefaults and convert them into Entry objects. 
 
 ###Step 18: Create an EntryController Object
 - Create an EntryController with property:
@@ -158,13 +164,14 @@ The removeEntry method needs to do the reverse. It should create a mutable copy 
 The replaceEntry method needs to find the index of the oldEntry and replace it if it exists. It should create a mutable copy of the entries array, check to see if it contains oldEntry, and then if it does find the index and replace object at index.
 
 ###Step 19: Update the controller to store the dictionary Entries to NSUserDefaults
-- Add a method 'loadFromDefaults'
+- Add a method 'loadFromDefaults' (similar to the loadFromDefaults method currently on Entry)
   - Add a static string for the entryListKey
   - Get an arry "entryDictionaries" from NSUserDefaults for the entryListKey
   - Set self.entries to entryDictionaries
   - Call loadFromDefaults in the sharedInstance method
-- Add a method 'synchronize'
+- Add a method 'synchronize' (similar to the saveToDefaults method currently on Entry)
   - Save self.entries to NSUserDefaults for key entryListKey
+  - This method will need to convert from Entry objects to NSDictionaries before saving to NSUserDefaults (entryDictionary)
   - Call this method at the end of addEntry and removeEntry and replaceEntry methods
 
 ###Step 20: Update the save method in DetailViewController
@@ -175,16 +182,16 @@ The replaceEntry method needs to find the index of the oldEntry and replace it i
   - If it is not nil, call [EntryController sharedInstance] replaceEntry and pass in self.dictionary as the one to be replaced
 
 ###Step 21: Update the detailViewController with an entry 
-- Add @class Entry; to the header view
-- Andd the method to updateWithEntry:(Entry *)entry;
+- Add @class Entry; to the header view (this is similar to importing, but we already imported Entry in the .m file, so we can use @class in the header)
+- Add a method updateWithEntry:(Entry *)entry that will update the detail view
+- Update your listViewController's didSelectRowAtIndexPath method to use the updateWithEntry method instead of updateWithDictionary
 - In the updateWithEntry method
-  - Store the Entry passed in to the entry property
-  - Set the text of your title and text to the entry's values
+  - Store the Entry passed in to the entry property (self.entry)
+  - Set the text of your title textField and text textView to the values from the entry object
 - In the viewDidLoad method 
   - Set the text of your title and text to the entry's values
 - In the save method, update your entry object with the text and title values
 - Check to see if self.entry != nil and the if it does create a new self.entry with entry
-
 
 
 ##Core Data
