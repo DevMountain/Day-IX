@@ -35,6 +35,14 @@
 		E70756731AA5300700F8051D /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 715A720919DDD2B000895248 /* Entry.m */; };
 		E70756741AA5300A00F8051D /* EntryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7160740019CADDA500D730CF /* EntryController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E70756751AA5300F00F8051D /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160740119CADDA500D730CF /* EntryController.m */; };
+		E7F6236A1AA69D6E008717F2 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F623691AA69D6E008717F2 /* InterfaceController.m */; };
+		E7F6236D1AA69D6E008717F2 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F6236C1AA69D6E008717F2 /* NotificationController.m */; };
+		E7F623701AA69D6E008717F2 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F6236F1AA69D6E008717F2 /* GlanceController.m */; };
+		E7F623721AA69D6E008717F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F623711AA69D6E008717F2 /* Images.xcassets */; };
+		E7F623761AA69D6E008717F2 /* DayX WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E7F623751AA69D6E008717F2 /* DayX WatchKit App.app */; };
+		E7F6237E1AA69D6E008717F2 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F6237C1AA69D6E008717F2 /* Interface.storyboard */; };
+		E7F623801AA69D6E008717F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F6237F1AA69D6E008717F2 /* Images.xcassets */; };
+		E7F623831AA69D6E008717F2 /* DayX WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +74,20 @@
 			remoteGlobalIDString = E707564D1AA52EE600F8051D;
 			remoteInfo = DayXKit;
 		};
+		E7F623771AA69D6E008717F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 711A505E19388095005642EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F623741AA69D6E008717F2;
+			remoteInfo = "DayX WatchKit App";
+		};
+		E7F623811AA69D6E008717F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 711A505E19388095005642EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F623621AA69D6E008717F2;
+			remoteInfo = "DayX WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +100,17 @@
 				E70756661AA52EE600F8051D /* DayXKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F6238A1AA69D6E008717F2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E7F623831AA69D6E008717F2 /* DayX WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -120,6 +153,20 @@
 		E70756581AA52EE600F8051D /* DayXKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayXKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E70756601AA52EE600F8051D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E70756611AA52EE600F8051D /* DayXKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayXKitTests.m; sourceTree = "<group>"; };
+		E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DayX WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F623661AA69D6E008717F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F623671AA69D6E008717F2 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		E7F623681AA69D6E008717F2 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		E7F623691AA69D6E008717F2 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		E7F6236B1AA69D6E008717F2 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		E7F6236C1AA69D6E008717F2 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		E7F6236E1AA69D6E008717F2 /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
+		E7F6236F1AA69D6E008717F2 /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
+		E7F623711AA69D6E008717F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E7F623751AA69D6E008717F2 /* DayX WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DayX WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F6237B1AA69D6E008717F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F6237D1AA69D6E008717F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		E7F6237F1AA69D6E008717F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +206,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F623601AA69D6E008717F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -169,6 +223,8 @@
 				711A508819388096005642EF /* DayXTests */,
 				E707564F1AA52EE600F8051D /* DayXKit */,
 				E707565E1AA52EE600F8051D /* DayXKitTests */,
+				E7F623641AA69D6E008717F2 /* DayX WatchKit Extension */,
+				E7F623791AA69D6E008717F2 /* DayX WatchKit App */,
 				711A506819388095005642EF /* Frameworks */,
 				711A506719388095005642EF /* Products */,
 			);
@@ -181,6 +237,8 @@
 				711A508119388096005642EF /* DayXTests.xctest */,
 				E707564E1AA52EE600F8051D /* DayXKit.framework */,
 				E70756581AA52EE600F8051D /* DayXKitTests.xctest */,
+				E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */,
+				E7F623751AA69D6E008717F2 /* DayX WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +343,48 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E7F623641AA69D6E008717F2 /* DayX WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E7F623681AA69D6E008717F2 /* InterfaceController.h */,
+				E7F623691AA69D6E008717F2 /* InterfaceController.m */,
+				E7F6236B1AA69D6E008717F2 /* NotificationController.h */,
+				E7F6236C1AA69D6E008717F2 /* NotificationController.m */,
+				E7F6236E1AA69D6E008717F2 /* GlanceController.h */,
+				E7F6236F1AA69D6E008717F2 /* GlanceController.m */,
+				E7F623711AA69D6E008717F2 /* Images.xcassets */,
+				E7F623651AA69D6E008717F2 /* Supporting Files */,
+			);
+			path = "DayX WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		E7F623651AA69D6E008717F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7F623661AA69D6E008717F2 /* Info.plist */,
+				E7F623671AA69D6E008717F2 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7F623791AA69D6E008717F2 /* DayX WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				E7F6237C1AA69D6E008717F2 /* Interface.storyboard */,
+				E7F6237F1AA69D6E008717F2 /* Images.xcassets */,
+				E7F6237A1AA69D6E008717F2 /* Supporting Files */,
+			);
+			path = "DayX WatchKit App";
+			sourceTree = "<group>";
+		};
+		E7F6237A1AA69D6E008717F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7F6237B1AA69D6E008717F2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -310,11 +410,13 @@
 				711A506319388095005642EF /* Frameworks */,
 				711A506419388095005642EF /* Resources */,
 				E707566A1AA52EE600F8051D /* Embed Frameworks */,
+				E7F6238A1AA69D6E008717F2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E70756641AA52EE600F8051D /* PBXTargetDependency */,
+				E7F623821AA69D6E008717F2 /* PBXTargetDependency */,
 			);
 			name = DayX;
 			productName = DayX;
@@ -376,6 +478,39 @@
 			productReference = E70756581AA52EE600F8051D /* DayXKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E7F623621AA69D6E008717F2 /* DayX WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F623891AA69D6E008717F2 /* Build configuration list for PBXNativeTarget "DayX WatchKit Extension" */;
+			buildPhases = (
+				E7F6235F1AA69D6E008717F2 /* Sources */,
+				E7F623601AA69D6E008717F2 /* Frameworks */,
+				E7F623611AA69D6E008717F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E7F623781AA69D6E008717F2 /* PBXTargetDependency */,
+			);
+			name = "DayX WatchKit Extension";
+			productName = "DayX WatchKit Extension";
+			productReference = E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		E7F623741AA69D6E008717F2 /* DayX WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F623881AA69D6E008717F2 /* Build configuration list for PBXNativeTarget "DayX WatchKit App" */;
+			buildPhases = (
+				E7F623731AA69D6E008717F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DayX WatchKit App";
+			productName = "DayX WatchKit App";
+			productReference = E7F623751AA69D6E008717F2 /* DayX WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -405,6 +540,13 @@
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 711A506519388095005642EF;
 					};
+					E7F623621AA69D6E008717F2 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = M9Y5WF87VL;
+					};
+					E7F623741AA69D6E008717F2 = {
+						CreatedOnToolsVersion = 6.2;
+					};
 				};
 			};
 			buildConfigurationList = 711A506119388095005642EF /* Build configuration list for PBXProject "DayX" */;
@@ -413,6 +555,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 711A505D19388095005642EF;
 			productRefGroup = 711A506719388095005642EF /* Products */;
@@ -423,6 +566,8 @@
 				711A508019388096005642EF /* DayXTests */,
 				E707564D1AA52EE600F8051D /* DayXKit */,
 				E70756571AA52EE600F8051D /* DayXKitTests */,
+				E7F623621AA69D6E008717F2 /* DayX WatchKit Extension */,
+				E7F623741AA69D6E008717F2 /* DayX WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -457,6 +602,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F623611AA69D6E008717F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F623761AA69D6E008717F2 /* DayX WatchKit App.app in Resources */,
+				E7F623721AA69D6E008717F2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F623731AA69D6E008717F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F6237E1AA69D6E008717F2 /* Interface.storyboard in Resources */,
+				E7F623801AA69D6E008717F2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +665,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F6235F1AA69D6E008717F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F6236D1AA69D6E008717F2 /* NotificationController.m in Sources */,
+				E7F6236A1AA69D6E008717F2 /* InterfaceController.m in Sources */,
+				E7F623701AA69D6E008717F2 /* GlanceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -525,6 +698,16 @@
 			target = E707564D1AA52EE600F8051D /* DayXKit */;
 			targetProxy = E70756631AA52EE600F8051D /* PBXContainerItemProxy */;
 		};
+		E7F623781AA69D6E008717F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F623741AA69D6E008717F2 /* DayX WatchKit App */;
+			targetProxy = E7F623771AA69D6E008717F2 /* PBXContainerItemProxy */;
+		};
+		E7F623821AA69D6E008717F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F623621AA69D6E008717F2 /* DayX WatchKit Extension */;
+			targetProxy = E7F623811AA69D6E008717F2 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -542,6 +725,14 @@
 				711A508C19388096005642EF /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E7F6237C1AA69D6E008717F2 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7F6237D1AA69D6E008717F2 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -789,6 +980,82 @@
 			};
 			name = Release;
 		};
+		E7F623841AA69D6E008717F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DayX WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E7F623851AA69D6E008717F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "DayX WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E7F623861AA69D6E008717F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = DayX_WatchKit_Extension;
+				INFOPLIST_FILE = "DayX WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		E7F623871AA69D6E008717F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IBSC_MODULE = DayX_WatchKit_Extension;
+				INFOPLIST_FILE = "DayX WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,6 +1103,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E7F623881AA69D6E008717F2 /* Build configuration list for PBXNativeTarget "DayX WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F623861AA69D6E008717F2 /* Debug */,
+				E7F623871AA69D6E008717F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E7F623891AA69D6E008717F2 /* Build configuration list for PBXNativeTarget "DayX WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F623841AA69D6E008717F2 /* Debug */,
+				E7F623851AA69D6E008717F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
