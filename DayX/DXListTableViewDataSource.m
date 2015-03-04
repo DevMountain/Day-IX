@@ -7,7 +7,7 @@
 //
 
 #import "DXListTableViewDataSource.h"
-#import "EntryController.h"
+#import <DayXKit/DayXKit.h>
 
 @implementation DXListTableViewDataSource
 

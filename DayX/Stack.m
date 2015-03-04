@@ -54,13 +54,14 @@
 
 - (NSURL*)storeURL
 {
-    NSURL* documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-    return [documentsDirectory URLByAppendingPathComponent:@"db.sqlite"];
+    NSURL* sharedContainerPath = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:sharedAppGroupContainer];
+    return [sharedContainerPath URLByAppendingPathComponent:@"db.sqlite"];
 }
 
 - (NSURL*)modelURL
 {
-    return [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
+    NSBundle *containerBundle = [NSBundle bundleWithIdentifier:@"com.devmountain.DayXKit"];
+    return [containerBundle URLForResource:@"Model" withExtension:@"momd"];
 }
 
 - (NSManagedObjectModel*)managedObjectModel

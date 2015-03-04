@@ -7,6 +7,7 @@
 //
 
 #import "EntryController.h"
+#import "Stack.h"
 
 @interface EntryController ()
 
