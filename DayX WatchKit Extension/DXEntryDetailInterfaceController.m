@@ -1,24 +1,27 @@
 //
-//  InterfaceController.m
-//  DayX WatchKit Extension
+//  DXEntryDetailInterfaceController.m
+//  DayX
 //
-//  Created by Ben Norris on 3/3/15.
+//  Created by Ben Norris on 3/5/15.
 //  Copyright (c) 2015 DevMountain. All rights reserved.
 //
 
-#import "InterfaceController.h"
+#import "DXEntryDetailInterfaceController.h"
 
 
-@interface InterfaceController()
+@interface DXEntryDetailInterfaceController()
+
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *entryTitle;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *entryContent;
 
 @end
 
 
-@implementation InterfaceController
+@implementation DXEntryDetailInterfaceController
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-
+    
     // Configure interface objects here.
 }
 
