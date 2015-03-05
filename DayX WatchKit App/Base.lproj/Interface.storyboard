@@ -20,7 +20,7 @@
                                     </group>
                                     <connections>
                                         <outlet property="entryTitle" destination="7ob-vf-Em7" id="Ylg-XY-uE3"/>
-                                        <segue destination="Vag-BG-ZCc" kind="push" id="LQD-rV-7p8"/>
+                                        <segue destination="Vag-BG-ZCc" kind="push" identifier="entrySelected" id="LQD-rV-7p8"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -40,7 +40,9 @@
             <objects>
                 <controller title="Entry" id="Vag-BG-ZCc" customClass="DXEntryDetailInterfaceController">
                     <items>
-                        <label alignment="left" text="Entry Title" numberOfLines="0" id="bGo-Ye-BH8"/>
+                        <label alignment="left" text="Entry Title" numberOfLines="0" id="bGo-Ye-BH8">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
                         <separator alignment="left" id="ELc-rn-QD2"/>
                         <label alignment="left" text="Entry Content" numberOfLines="0" id="8X3-B9-vzi"/>
                     </items>

@@ -39,6 +39,13 @@
     }
 }
 
+- (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex {
+    if ([segueIdentifier isEqualToString:@"entrySelected"]) {
+        return [EntryController sharedInstance].entries[rowIndex];
+    }
+    return nil;
+}
+
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];

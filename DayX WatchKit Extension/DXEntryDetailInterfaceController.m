@@ -7,7 +7,7 @@
 //
 
 #import "DXEntryDetailInterfaceController.h"
-
+#import <DayXKit/DayXKit.h>
 
 @interface DXEntryDetailInterfaceController()
 
@@ -23,6 +23,11 @@
     [super awakeWithContext:context];
     
     // Configure interface objects here.
+    if ([context isKindOfClass:[Entry class]]) {
+        Entry *entry = context;
+        [self.entryTitle setText:entry.title];
+        [self.entryContent setText:entry.text];
+    }
 }
 
 - (void)willActivate {
