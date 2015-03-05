@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Entries List Interface Controller-->
+        <!--Entries-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="DXEntriesListInterfaceController">
+                <controller title="Entries" id="AgC-eL-Hgc" customClass="DXEntriesListInterfaceController">
                     <items>
                         <table alignment="left" id="WF0-Rs-NrS">
                             <items>
@@ -25,18 +25,20 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label alignment="left" text="No entries. Yet. Get on it!" numberOfLines="0" id="Sxt-jY-ziS"/>
                     </items>
                     <connections>
                         <outlet property="entriesTable" destination="WF0-Rs-NrS" id="LDm-8k-uNf"/>
+                        <outlet property="errorMessage" destination="Sxt-jY-ziS" id="b41-bs-s5T"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
-        <!--Entry Detail Interface Controller-->
+        <!--Entry-->
         <scene sceneID="FFn-Pb-tip">
             <objects>
-                <controller id="Vag-BG-ZCc" customClass="DXEntryDetailInterfaceController">
+                <controller title="Entry" id="Vag-BG-ZCc" customClass="DXEntryDetailInterfaceController">
                     <items>
                         <label alignment="left" text="Entry Title" numberOfLines="0" id="bGo-Ye-BH8"/>
                         <separator alignment="left" id="ELc-rn-QD2"/>

@@ -17,4 +17,11 @@
 
 @implementation DXEntryRowController
 
+- (void)setEntryTitleWithString:(NSString *)title {
+    if (!title) {
+        return;
+    }
+    [self.entryTitle setText:title];
+}
+
 @end

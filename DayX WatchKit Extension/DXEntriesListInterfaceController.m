@@ -7,11 +7,13 @@
 //
 
 #import "DXEntriesListInterfaceController.h"
-
+#import <DayXKit/DayXKit.h>
+#import "DXEntryRowController.h"
 
 @interface DXEntriesListInterfaceController()
 
 @property (strong, nonatomic) IBOutlet WKInterfaceTable *entriesTable;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *errorMessage;
 
 @end
 
@@ -22,6 +24,19 @@
     [super awakeWithContext:context];
 
     // Configure interface objects here.
+    if ([EntryController sharedInstance].entries.count > 0) {
+        [self.errorMessage setHidden:YES];
+        [self.entriesTable setNumberOfRows:[EntryController sharedInstance].entries.count withRowType:@"entryRow"];
+        
+        for (NSInteger index = 0; index < [EntryController sharedInstance].entries.count; index++) {
+            Entry *entry = [EntryController sharedInstance].entries[index];
+            DXEntryRowController *rowController = [self.entriesTable rowControllerAtIndex:index];
+            [rowController setEntryTitleWithString:entry.title];
+        }
+
+    } else {
+        [self.entriesTable setHidden:YES];
+    }
 }
 
 - (void)willActivate {

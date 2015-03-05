@@ -10,4 +10,6 @@
 
 @interface DXEntryRowController : NSObject
 
+- (void)setEntryTitleWithString:(NSString *)title;
+
 @end
