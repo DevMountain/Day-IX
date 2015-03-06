@@ -44,9 +44,8 @@
 		E7F623801AA69D6E008717F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F6237F1AA69D6E008717F2 /* Images.xcassets */; };
 		E7F623831AA69D6E008717F2 /* DayX WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E7F6238D1AA6BA34008717F2 /* DXEntryRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F6238C1AA6BA34008717F2 /* DXEntryRowController.m */; };
-		E7F6238F1AA7CB1C008717F2 /* DayXKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E707564E1AA52EE600F8051D /* DayXKit.framework */; };
-		E7F623901AA7CB1C008717F2 /* DayXKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E707564E1AA52EE600F8051D /* DayXKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7F623991AA8FFA2008717F2 /* DXEntryDetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F623981AA8FFA2008717F2 /* DXEntryDetailInterfaceController.m */; };
+		E7F6239A1AA9318C008717F2 /* DayXKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E707564E1AA52EE600F8051D /* DayXKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,13 +91,6 @@
 			remoteGlobalIDString = E7F623621AA69D6E008717F2;
 			remoteInfo = "DayX WatchKit Extension";
 		};
-		E7F623911AA7CB1C008717F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 711A505E19388095005642EF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E707564D1AA52EE600F8051D;
-			remoteInfo = DayXKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -122,17 +114,6 @@
 				E7F623831AA69D6E008717F2 /* DayX WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7F623931AA7CB1C008717F2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E7F623901AA7CB1C008717F2 /* DayXKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -237,7 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7F6238F1AA7CB1C008717F2 /* DayXKit.framework in Frameworks */,
+				E7F6239A1AA9318C008717F2 /* DayXKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,13 +499,11 @@
 				E7F6235F1AA69D6E008717F2 /* Sources */,
 				E7F623601AA69D6E008717F2 /* Frameworks */,
 				E7F623611AA69D6E008717F2 /* Resources */,
-				E7F623931AA7CB1C008717F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E7F623781AA69D6E008717F2 /* PBXTargetDependency */,
-				E7F623921AA7CB1C008717F2 /* PBXTargetDependency */,
 			);
 			name = "DayX WatchKit Extension";
 			productName = "DayX WatchKit Extension";
@@ -749,11 +728,6 @@
 			isa = PBXTargetDependency;
 			target = E7F623621AA69D6E008717F2 /* DayX WatchKit Extension */;
 			targetProxy = E7F623811AA69D6E008717F2 /* PBXContainerItemProxy */;
-		};
-		E7F623921AA7CB1C008717F2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E707564D1AA52EE600F8051D /* DayXKit */;
-			targetProxy = E7F623911AA7CB1C008717F2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
