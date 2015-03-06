@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-static NSString *const sharedAppGroupContainer = @"group.com.devmountain.DayX";
+static NSString *const sharedAppGroupContainer = @"group.com.devmtn.DayX";
 
 @interface Stack : NSObject
 

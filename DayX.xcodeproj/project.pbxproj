@@ -536,7 +536,7 @@
 				ORGANIZATIONNAME = DevMountain;
 				TargetAttributes = {
 					711A506519388095005642EF = {
-						DevelopmentTeam = M9Y5WF87VL;
+						DevelopmentTeam = 357NQPN89X;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -548,7 +548,7 @@
 					};
 					E707564D1AA52EE600F8051D = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = M9Y5WF87VL;
+						DevelopmentTeam = 357NQPN89X;
 					};
 					E70756571AA52EE600F8051D = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -556,7 +556,7 @@
 					};
 					E7F623621AA69D6E008717F2 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = M9Y5WF87VL;
+						DevelopmentTeam = 357NQPN89X;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -565,6 +565,7 @@
 					};
 					E7F623741AA69D6E008717F2 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 357NQPN89X;
 					};
 				};
 			};
@@ -1047,6 +1048,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1068,6 +1070,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IBSC_MODULE = DayX_WatchKit_Extension;
