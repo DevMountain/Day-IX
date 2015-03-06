@@ -387,7 +387,7 @@
 				ORGANIZATIONNAME = DevMountain;
 				TargetAttributes = {
 					711A506519388095005642EF = {
-						DevelopmentTeam = M9Y5WF87VL;
+						DevelopmentTeam = 357NQPN89X;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -399,7 +399,7 @@
 					};
 					E707564D1AA52EE600F8051D = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = M9Y5WF87VL;
+						DevelopmentTeam = 357NQPN89X;
 					};
 					E70756571AA52EE600F8051D = {
 						CreatedOnToolsVersion = 6.1.1;

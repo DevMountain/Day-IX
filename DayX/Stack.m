@@ -60,7 +60,7 @@
 
 - (NSURL*)modelURL
 {
-    NSBundle *containerBundle = [NSBundle bundleWithIdentifier:@"com.devmountain.DayXKit"];
+    NSBundle *containerBundle = [NSBundle bundleWithIdentifier:@"com.devmtn.DayXKit"];
     return [containerBundle URLForResource:@"Model" withExtension:@"momd"];
 }
 
