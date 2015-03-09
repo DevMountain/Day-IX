@@ -7,12 +7,6 @@
 //
 
 #import "EntryController.h"
-#import <CloudKit/CloudKit.h>
-
-static NSString * const EntryRecordKey = @"Entry";
-static NSString * const EntryTitleKey = @"title";
-static NSString * const EntryTextKey = @"text";
-static NSString * const EntryTimeStampKey = @"timestamp";
 
 @interface EntryController ()
 
@@ -21,20 +15,25 @@ static NSString * const EntryTimeStampKey = @"timestamp";
 @implementation EntryController
 
 + (EntryController *)sharedInstance {
+
     static EntryController *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[EntryController alloc] init];
+
+        // NOTE: Without a sync engine to pull and update entries on first launch, this app will assume that the server starts out in the same place as the app: empty. This may not be true if the user has multiple devices, or has to uninstall and reinstall.
         
-        [sharedInstance retrieveEntriesFromCloudKit];
     });
+    
     return sharedInstance;
+    
 }
 
 + (CKDatabase *)privateDB {
+
     CKDatabase *database = [[CKContainer defaultContainer] privateCloudDatabase];
-    
     return database;
+    
 }
 
 - (NSArray *)entries {
@@ -45,28 +44,11 @@ static NSString * const EntryTimeStampKey = @"timestamp";
 
 }
 
-- (void)retrieveEntriesFromCloudKit {
-    
-    NSPredicate *truePredicate = [NSPredicate predicateWithValue:YES];
-    
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:truePredicate];
-
-    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
-        
-        if (!error) {
-            for (CKRecord *entry in results) {
-                // convert record to core data object, compare to other core data objects, if unique, save it
-                NSLog(@"%@", entry);
-            }
-        }
-    }];
-}
-
-
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date {
-
+    
     CKRecord *cloudKitEntry = [[CKRecord alloc] initWithRecordType:EntryRecordKey];
     
+    cloudKitEntry[EntryIdentifierKey] = [[NSUUID UUID] UUIDString];
     cloudKitEntry[EntryTitleKey] = title;
     cloudKitEntry[EntryTextKey] = text;
     cloudKitEntry[EntryTimeStampKey] = date;
@@ -75,34 +57,80 @@ static NSString * const EntryTimeStampKey = @"timestamp";
         if (!error) {
             
             NSLog(@"Saved Entry to CloudKit");
+            [self storeRecordToCoreData:cloudKitEntry uploaded:YES];
             
-            CKRecord *savedEntryRecord = record;
-            
-            Entry *coreDataEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
-                                                                 inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-            coreDataEntry.title = savedEntryRecord[EntryTitleKey];
-            coreDataEntry.text = savedEntryRecord[EntryTextKey];
-            coreDataEntry.timestamp = savedEntryRecord[EntryTimeStampKey];
-            
-            [self synchronize];
         } else {
-            
-            Entry *coreDataEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
-                                                                 inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-            coreDataEntry.title = title;
-            coreDataEntry.text = text;
-            coreDataEntry.timestamp = date;
-            
-            // todo: add core data property to mark successful save no cloudkit so i can handle unsynced changes later
-            
-            [self synchronize];
+
+            NSLog(@"NOT Saved Entry to CloudKit");
+            [self storeRecordToCoreData:cloudKitEntry uploaded:NO];
+
         }
     }];
+
+}
+
+- (void)storeRecordToCoreData:(CKRecord *)record uploaded:(BOOL)uploaded {
+
+    Entry *coreDataEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
+                                                         inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    coreDataEntry.identifier = record[EntryIdentifierKey];
+    coreDataEntry.title = record[EntryTitleKey];
+    coreDataEntry.text = record[EntryTextKey];
+    coreDataEntry.timestamp = record[EntryTimeStampKey];
+    coreDataEntry.uploaded = [NSNumber numberWithBool:uploaded];
     
+    [self synchronize];
+
+}
+
+- (void)updateEntry:(Entry *)entry {
+    
+    NSPredicate *identifierPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", entry.identifier];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:identifierPredicate];
+
+    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+        
+        if (!error) {
+
+            CKRecord *cloudKitEntry = nil;
+            
+            if (results.count > 0) {
+                cloudKitEntry = results.firstObject;
+            } else {
+                cloudKitEntry = [[CKRecord alloc] initWithRecordType:EntryRecordKey];
+            }
+            
+            cloudKitEntry[EntryTitleKey] = entry.title;
+            cloudKitEntry[EntryTextKey] = entry.text;
+            cloudKitEntry[EntryTimeStampKey] = entry.timestamp;
+            
+            [[EntryController privateDB] saveRecord:cloudKitEntry completionHandler:nil];
+        
+        }
+    }];
 }
 
 - (void)removeEntry:(Entry *)entry {
 
+    NSPredicate *identifierPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", entry.identifier];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:identifierPredicate];
+    
+    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+        
+        if (!error) {
+
+            CKRecord *cloudKitEntry = nil;
+            
+            if (results.count > 0) {
+                cloudKitEntry = results.firstObject;
+            
+                [[EntryController privateDB] deleteRecordWithID:cloudKitEntry.recordID completionHandler:nil];
+            }
+        }
+        
+    }];
+    
+    
     [entry.managedObjectContext deleteObject:entry];
     [self synchronize];
 
@@ -111,6 +139,30 @@ static NSString * const EntryTimeStampKey = @"timestamp";
 - (void)synchronize {
     [[Stack sharedInstance].managedObjectContext save:NULL];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:EntryListUpdated object:nil];
 }
+
+
+#pragma mark - Debugging Methods
+
+- (void)retrieveEntriesFromCloudKit {
+    
+    // Simple request to check to see what is on CloudKit
+    
+    NSPredicate *truePredicate = [NSPredicate predicateWithValue:YES];
+    
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:truePredicate];
+    
+    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+        
+        if (!error) {
+            for (CKRecord *entry in results) {
+                
+                NSLog(@"%@", entry);
+            }
+        }
+    }];
+}
+
 
 @end

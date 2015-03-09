@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CloudKit/CloudKit.h>
 #import "Entry.h"
+
+static NSString * const EntryListUpdated = @"EntryListUpdated";
 
 @interface EntryController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *entries;
 
 + (EntryController *)sharedInstance;
++ (CKDatabase *)privateDB;
 
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date;
+- (void)updateEntry:(Entry *)entry;
 - (void)removeEntry:(Entry *)entry;
 
 - (void)synchronize;

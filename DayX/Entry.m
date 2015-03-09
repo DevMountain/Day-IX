@@ -8,11 +8,13 @@
 
 #import "Entry.h"
 
-
 @implementation Entry
 
+@dynamic identifier;
 @dynamic title;
 @dynamic text;
 @dynamic timestamp;
+
+@dynamic uploaded;
 
 @end
