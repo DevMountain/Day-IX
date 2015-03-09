@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FA63FF91AAD803400A880FD /* SyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA63FF81AAD803400A880FD /* SyncController.m */; };
 		688A6AFD1AAB640800D91D54 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 688A6AFC1AAB640800D91D54 /* CloudKit.framework */; };
 		711A506A19388095005642EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506919388095005642EF /* Foundation.framework */; };
 		711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506B19388095005642EF /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FA63FF71AAD803400A880FD /* SyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncController.h; sourceTree = "<group>"; };
+		4FA63FF81AAD803400A880FD /* SyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncController.m; sourceTree = "<group>"; };
 		688A6AFB1AAB640000D91D54 /* DayX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DayX.entitlements; sourceTree = "<group>"; };
 		688A6AFC1AAB640800D91D54 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		711A506619388095005642EF /* DayX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +193,8 @@
 				715A720919DDD2B000895248 /* Entry.m */,
 				7160740019CADDA500D730CF /* EntryController.h */,
 				7160740119CADDA500D730CF /* EntryController.m */,
+				4FA63FF71AAD803400A880FD /* SyncController.h */,
+				4FA63FF81AAD803400A880FD /* SyncController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA63FF91AAD803400A880FD /* SyncController.m in Sources */,
 				7160740819CAE06500D730CF /* DXListTableViewDataSource.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
 				715A720719DDD27700895248 /* Stack.m in Sources */,

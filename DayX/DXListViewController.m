@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DXListTableViewDataSource *dataSource;
 
+@property (nonatomic, assign) BOOL registeredForNotifications;
+
 @end
 
 @implementation DXListViewController
@@ -29,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self registerForNotifications];
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -58,6 +62,32 @@
     DXDetailViewController *detailViewController = [DXDetailViewController new];
     [self.navigationController pushViewController:detailViewController animated:YES];
     
+}
+
+# pragma mark - update notification
+
+- (void)reloadData {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+- (void)registerForNotifications {
+    if (!self.registeredForNotifications) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:EntryListUpdated object:nil];
+        self.registeredForNotifications = YES;
+    }
+}
+
+- (void)unregisterForNotifications {
+    if (self.registeredForNotifications) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:EntryListUpdated object:nil];
+        self.registeredForNotifications = NO;
+    }
+}
+
+- (void)dealloc {
+    [self unregisterForNotifications];
 }
 
 @end
