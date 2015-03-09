@@ -85,20 +85,13 @@
 
 - (void)updateEntry:(Entry *)entry {
     
-    NSPredicate *identifierPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", entry.identifier];
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:identifierPredicate];
+    CKRecordID *entryRecordId = [[CKRecordID alloc] initWithRecordName:entry.identifier];
 
-    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+    [[EntryController privateDB] fetchRecordWithID:entryRecordId completionHandler:^(CKRecord *record, NSError *error) {
         
         if (!error) {
 
-            CKRecord *cloudKitEntry = nil;
-            
-            if (results.count > 0) {
-                cloudKitEntry = results.firstObject;
-            } else {
-                cloudKitEntry = [[CKRecord alloc] initWithRecordType:EntryRecordKey];
-            }
+            CKRecord *cloudKitEntry = record;
             
             cloudKitEntry[EntryTitleKey] = entry.title;
             cloudKitEntry[EntryTextKey] = entry.text;
@@ -112,24 +105,15 @@
 
 - (void)removeEntry:(Entry *)entry {
 
-    NSPredicate *identifierPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", entry.identifier];
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:EntryRecordKey predicate:identifierPredicate];
+    CKRecordID *entryRecordId = [[CKRecordID alloc] initWithRecordName:entry.identifier];
     
-    [[EntryController privateDB] performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
-        
+    [[EntryController privateDB] deleteRecordWithID:entryRecordId completionHandler:^(CKRecordID *recordID, NSError *error) {
         if (!error) {
-
-            CKRecord *cloudKitEntry = nil;
-            
-            if (results.count > 0) {
-                cloudKitEntry = results.firstObject;
-            
-                [[EntryController privateDB] deleteRecordWithID:cloudKitEntry.recordID completionHandler:nil];
-            }
+            NSLog(@"Deleted Entry from CloudKit");
+        } else {
+            NSLog(@"Did NOT delete Entry from CloudKit");
         }
-        
     }];
-    
     
     [entry.managedObjectContext deleteObject:entry];
     [self synchronize];
