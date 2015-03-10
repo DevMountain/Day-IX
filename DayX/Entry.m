@@ -8,11 +8,16 @@
 
 #import "Entry.h"
 
+static NSString * const EntryClassName = @"Entry";
 
 @implementation Entry
 
 @dynamic title;
 @dynamic text;
 @dynamic timestamp;
+
++ (NSString *)parseClassName {
+    return EntryClassName;
+}
 
 @end

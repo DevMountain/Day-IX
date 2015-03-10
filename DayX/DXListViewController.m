@@ -11,8 +11,10 @@
 #import "DXDetailViewController.h"
 
 #import "EntryController.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
-@interface DXListViewController () <UITableViewDelegate>
+@interface DXListViewController () <UITableViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DXListTableViewDataSource *dataSource;
@@ -25,6 +27,12 @@
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+    
+    PFUser *user = [PFUser currentUser];
+    if (!user.email) {
+        [self signIn:nil];
+    }
+
 }
 
 - (void)viewDidLoad {
@@ -57,6 +65,26 @@
 
     DXDetailViewController *detailViewController = [DXDetailViewController new];
     [self.navigationController pushViewController:detailViewController animated:YES];
+    
+}
+
+- (IBAction)signIn:(id)sender {
+    
+    PFLogInViewController *logIn = [PFLogInViewController new];
+    logIn.delegate = self;
+    [self presentViewController:logIn animated:YES completion:nil];
+    
+}
+
+// Delegate methods for authentication view controllers
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

@@ -19,40 +19,54 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[EntryController alloc] init];
+        [sharedInstance loadEntriesFromParse];
     });
     return sharedInstance;
 }
 
+- (void)loadEntriesFromParse {
+    
+    PFQuery *query = [Entry query];
+    
+    // Without notifications to update the tableview we'll need to restart the app to get the tableview to load
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (Entry *entry in objects) {
+            [entry pin];
+        }
+    }];
+}
+
 - (NSArray *)entries {
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Entry"];
-    NSArray *objects = [[Stack sharedInstance].managedObjectContext executeFetchRequest:request error:NULL];
-    return objects;
+    PFQuery *query = [Entry query];
+    [query fromLocalDatastore];
+    return [query findObjects];
     
 }
 
-
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date {
 
-    Entry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
-                                                   inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    Entry *entry = [Entry object];
+    
     entry.title = title;
     entry.text = text;
     entry.timestamp = date;
-
-    [self synchronize];
+    
+    [entry pinInBackground];
+    [entry save];
     
 }
 
 - (void)removeEntry:(Entry *)entry {
 
-    [entry.managedObjectContext deleteObject:entry];
-    [self synchronize];
-
+    [entry unpinInBackground];
+    [entry deleteInBackground];
 }
 
-- (void)synchronize {
-    [[Stack sharedInstance].managedObjectContext save:NULL];
+- (void)updateEntry:(Entry *)entry {
+
+    [entry pinInBackground];
+    [entry save];
     
 }
 

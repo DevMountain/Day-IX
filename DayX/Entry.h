@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
 
-
-@interface Entry : NSManagedObject
+@interface Entry : PFObject <PFSubclassing>
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSDate * timestamp;
+
++ (NSString *)parseClassName;
 
 @end
