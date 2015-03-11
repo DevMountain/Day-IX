@@ -18,6 +18,7 @@ static NSString *kDATE = @"date";
 @property (nonatomic, strong, readonly) NSArray *entries;
 
 + (EntryController *)sharedInstance;
++ (void)updateSharedInstance;
 
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date;
 - (void)removeEntry:(NSString *)entryID;

@@ -48,8 +48,11 @@
     {
         NSLog(@"App/Account linked successfully!");
         DBDatastoreManager *localManager = [DBDatastoreManager localManagerForAccountManager:[DBAccountManager sharedManager]];
+        [[EntryController sharedInstance].datastore close];
         [localManager migrateToAccount:account error:nil];
         [DBDatastoreManager setSharedManager:[DBDatastoreManager managerForAccount:account]];
+        
+        [EntryController updateSharedInstance];
         return YES;
     }
     return NO;

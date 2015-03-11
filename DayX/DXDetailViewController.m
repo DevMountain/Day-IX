@@ -37,7 +37,7 @@
     self.textField.text = self.entry[kTITLE];
     self.textView.text = self.entry[kTEXT];
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = saveButton;
 
 }
@@ -52,7 +52,7 @@
     self.textView.text = @"";
 }
 
-- (IBAction)save:(id)sender {
+- (void)save {
 
     if (self.entry) {
 
