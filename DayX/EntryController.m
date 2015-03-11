@@ -30,7 +30,7 @@
 + (void)updateSharedInstance
 {
     [EntryController sharedInstance].datastore = [[DBDatastoreManager sharedManager] openDefaultDatastore:nil];
-    [EntryController sharedInstance].entriesTable = [[self sharedInstance].datastore getTable:@"Entries"];
+    [EntryController sharedInstance].entriesTable = [[EntryController sharedInstance].datastore getTable:@"Entries"];
 }
 
 - (NSArray *)entries {
@@ -57,15 +57,6 @@
 
 - (void)update
 {
-    [self.datastore sync:nil];
-}
-
-- (void)updateEntry:(NSString *)entryID withTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date
-{
-    DBRecord *recordToUpdate = [self.entriesTable getRecord:entryID error:nil];
-    recordToUpdate[kTITLE] = title;
-    recordToUpdate[kTEXT] = text;
-    recordToUpdate[kDATE] = date;
     [self.datastore sync:nil];
 }
 
