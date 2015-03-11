@@ -16,6 +16,7 @@ static NSString *kDATE = @"date";
 @interface EntryController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray *entries;
+@property (strong, nonatomic) DBDatastore *datastore;
 
 + (EntryController *)sharedInstance;
 + (void)updateSharedInstance;

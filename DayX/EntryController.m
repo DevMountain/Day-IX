@@ -10,7 +10,6 @@
 
 @interface EntryController ()
 
-@property (strong, nonatomic) DBDatastore *datastore;
 @property (strong, nonatomic) DBTable *entriesTable;
 
 @end
