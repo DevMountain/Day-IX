@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Dropbox/Dropbox.h>
+
+static NSString *kTITLE = @"title";
+static NSString *kTEXT = @"text";
+static NSString *kDATE = @"date";
 
 @interface EntryController : NSObject
 
@@ -15,7 +20,7 @@
 + (EntryController *)sharedInstance;
 
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date;
-- (void)updateEntry:(NSString *)entryID withTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date;
 - (void)removeEntry:(NSString *)entryID;
+- (void)update;
 
 @end

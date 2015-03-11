@@ -7,11 +7,6 @@
 //
 
 #import "EntryController.h"
-#import <Dropbox/Dropbox.h>
-
-static NSString *kTITLE = @"title";
-static NSString *kTEXT = @"text";
-static NSString *kDATE = @"date";
 
 @interface EntryController ()
 
@@ -33,6 +28,12 @@ static NSString *kDATE = @"date";
     return sharedInstance;
 }
 
++ (void)updateSharedInstance
+{
+    [EntryController sharedInstance].datastore = [[DBDatastoreManager sharedManager] openDefaultDatastore:nil];
+    [EntryController sharedInstance].entriesTable = [[self sharedInstance].datastore getTable:@"Entries"];
+}
+
 - (NSArray *)entries {
     
 
@@ -52,6 +53,11 @@ static NSString *kDATE = @"date";
 {
     DBRecord *recordToDelete = [self.entriesTable getRecord:entryID error:nil];
     [recordToDelete deleteRecord];
+    [self.datastore sync:nil];
+}
+
+- (void)update
+{
     [self.datastore sync:nil];
 }
 

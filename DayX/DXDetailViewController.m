@@ -11,7 +11,7 @@
 
 @interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
-@property (nonatomic, strong) Entry *entry;
+@property (nonatomic, strong) DBRecord *entry;
 
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, strong) IBOutlet UITextView *textView;
@@ -21,11 +21,11 @@
 
 @implementation DXDetailViewController
 
-- (void)updateWithEntry:(Entry *)entry {
-    self.entry = entry;
-    
-    self.textField.text = entry.title;
-    self.textView.text = entry.text;
+- (void)updateWithEntryDBRecord:(DBRecord *)record
+{
+    self.entry = record;
+    self.textField.text = self.entry[kTITLE];
+    self.textView.text = self.entry[kTEXT];
 }
 
 - (void)viewDidLoad {
@@ -34,8 +34,8 @@
     self.textField.delegate = self;
     self.textView.delegate = self;
  
-    self.textField.text = self.entry.title;
-    self.textView.text = self.entry.text;
+    self.textField.text = self.entry[kTITLE];
+    self.textView.text = self.entry[kTEXT];
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -56,11 +56,11 @@
 
     if (self.entry) {
 
-        self.entry.title = self.textField.text;
-        self.entry.text = self.textView.text;
-        self.entry.timestamp = [NSDate date];
+        self.entry[kTITLE] = self.textField.text;
+        self.entry[kTEXT] = self.textView.text;
+        self.entry[kDATE] = [NSDate date];
         
-        [[EntryController sharedInstance] updateEntry:self.entry];
+        [[EntryController sharedInstance] update];
         
     } else {
         [[EntryController sharedInstance] addEntryWithTitle:self.textField.text text:self.textView.text date:[NSDate date]];
@@ -68,7 +68,6 @@
     
     
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 @end

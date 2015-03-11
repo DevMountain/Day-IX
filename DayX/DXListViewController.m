@@ -52,7 +52,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     DXDetailViewController *detailViewController = [DXDetailViewController new];
-    [detailViewController updateWithEntry:[EntryController sharedInstance].entries[indexPath.row]];
+    [detailViewController updateWithEntryDBRecord:[EntryController sharedInstance].entries[indexPath.row]];
     [self.navigationController pushViewController:detailViewController animated:YES];
 
 }

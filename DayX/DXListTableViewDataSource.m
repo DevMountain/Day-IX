@@ -8,6 +8,7 @@
 
 #import "DXListTableViewDataSource.h"
 #import "EntryController.h"
+#import <Dropbox/Dropbox.h>
 
 @implementation DXListTableViewDataSource
 
@@ -23,8 +24,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
     
-    Entry *entry = [EntryController sharedInstance].entries[indexPath.row];
-    cell.textLabel.text = entry.title;
+    DBRecord *entry = [EntryController sharedInstance].entries[indexPath.row];
+    cell.textLabel.text = entry[kTITLE];
     
     return cell;
 }
