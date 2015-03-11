@@ -7,8 +7,16 @@
 //
 
 #import "EntryController.h"
+#import <Dropbox/Dropbox.h>
+
+static NSString *kTITLE = @"title";
+static NSString *kTEXT = @"text";
+static NSString *kDATE = @"date";
 
 @interface EntryController ()
+
+@property (strong, nonatomic) DBDatastore *datastore;
+@property (strong, nonatomic) DBTable *entriesTable;
 
 @end
 
@@ -19,55 +27,41 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[EntryController alloc] init];
-        [sharedInstance loadEntriesFromParse];
+        sharedInstance.datastore = [[DBDatastoreManager sharedManager] openDefaultDatastore:nil];
+        sharedInstance.entriesTable = [sharedInstance.datastore getTable:@"Entries"];
     });
     return sharedInstance;
 }
 
-- (void)loadEntriesFromParse {
-    
-    PFQuery *query = [Entry query];
-    
-    // Without notifications to update the tableview we'll need to restart the app to get the tableview to load
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (Entry *entry in objects) {
-            [entry pin];
-        }
-    }];
-}
-
 - (NSArray *)entries {
     
-    PFQuery *query = [Entry query];
-    [query fromLocalDatastore];
-    return [query findObjects];
+
+    return [self.entriesTable query:nil error:nil];
     
 }
 
 - (void)addEntryWithTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date {
 
-    Entry *entry = [Entry object];
-    
-    entry.title = title;
-    entry.text = text;
-    entry.timestamp = date;
-    
-    [entry pinInBackground];
-    [entry save];
-    
+    DBRecord *record = [self.entriesTable insert:@{ kTITLE : title,
+                                                    kTEXT : text,
+                                                    kDATE : date }];
+    [self.datastore sync:nil];
 }
 
-- (void)removeEntry:(Entry *)entry {
-
-    [entry unpinInBackground];
-    [entry deleteInBackground];
+- (void)removeEntry:(NSString *)entryID
+{
+    DBRecord *recordToDelete = [self.entriesTable getRecord:entryID error:nil];
+    [recordToDelete deleteRecord];
+    [self.datastore sync:nil];
 }
 
-- (void)updateEntry:(Entry *)entry {
-
-    [entry pinInBackground];
-    [entry save];
-    
+- (void)updateEntry:(NSString *)entryID withTitle:(NSString *)title text:(NSString *)text date:(NSDate *)date
+{
+    DBRecord *recordToUpdate = [self.entriesTable getRecord:entryID error:nil];
+    recordToUpdate[kTITLE] = title;
+    recordToUpdate[kTEXT] = text;
+    recordToUpdate[kDATE] = date;
+    [self.datastore sync:nil];
 }
 
 @end
