@@ -9,12 +9,11 @@
 #import "DXListViewController.h"
 #import "DXListTableViewDataSource.h"
 #import "DXDetailViewController.h"
-
+#import <Dropbox/Dropbox.h>
 #import "EntryController.h"
-#import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
 
-@interface DXListViewController () <UITableViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+
+@interface DXListViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DXListTableViewDataSource *dataSource;
@@ -27,12 +26,6 @@
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
-    
-    PFUser *user = [PFUser currentUser];
-    if (!user.email) {
-        [self signIn:nil];
-    }
-
 }
 
 - (void)viewDidLoad {
@@ -40,6 +33,9 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    UIBarButtonItem *linkDropboxButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dropbox"] style:UIBarButtonItemStylePlain target:self action:@selector(linkDropboxAccount)];
+    self.navigationItem.leftBarButtonItem = linkDropboxButton;
     
     self.dataSource = [DXListTableViewDataSource new];
     
@@ -56,7 +52,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     DXDetailViewController *detailViewController = [DXDetailViewController new];
-    [detailViewController updateWithEntry:[EntryController sharedInstance].entries[indexPath.row]];
+    [detailViewController updateWithEntryDBRecord:[EntryController sharedInstance].entries[indexPath.row]];
     [self.navigationController pushViewController:detailViewController animated:YES];
 
 }
@@ -68,24 +64,17 @@
     
 }
 
-- (IBAction)signIn:(id)sender {
-    
-    PFLogInViewController *logIn = [PFLogInViewController new];
-    logIn.delegate = self;
-    [self presentViewController:logIn animated:YES completion:nil];
-    
-}
-
-// Delegate methods for authentication view controllers
-
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+- (void)linkDropboxAccount
+{
+    DBAccount *account = [[DBAccountManager sharedManager] linkedAccount];
+    if (account)
+    {
+        NSLog(@"App already linked");
+    }
+    else
+    {
+        [[DBAccountManager sharedManager] linkFromController:self];
+    }
 }
 
 @end

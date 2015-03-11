@@ -8,23 +8,27 @@
 
 #import "DXAppDelegate.h"
 #import "DXListViewController.h"
-#import <Parse/Parse.h>
 #import "EntryController.h"
+#import <Dropbox/Dropbox.h>
 
 @implementation DXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#warning may need to update appKey here and in URL Types
+    DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:@"cs13lohq8icnzpz"
+                                                                         secret:@"6tpqkkemyd5aed6"];
+    [DBAccountManager setSharedManager:accountManager];
     
-    [Entry registerSubclass];
-    [Parse enableLocalDatastore];
-    [Parse setApplicationId:@"mfr0V12p7nitm19BYBEHmBQOaA2WisIIJFxzABaJ"
-                  clientKey:@"jm2QZw8XGwDduuhf9SviN4KGt07vRtdoJBJj8O8C"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    [PFUser enableAutomaticUser];
-    PFACL *defaultACL = [PFACL ACL];
-    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    DBAccount *account = [[DBAccountManager sharedManager] linkedAccount];
+    if (account)
+    {
+        [DBDatastoreManager setSharedManager:[DBDatastoreManager managerForAccount:account]];
+    }
+    else
+    {
+        [DBDatastoreManager setSharedManager:[DBDatastoreManager localManagerForAccountManager:[DBAccountManager sharedManager]]];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -35,6 +39,23 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account)
+    {
+        NSLog(@"App/Account linked successfully!");
+        DBDatastoreManager *localManager = [DBDatastoreManager localManagerForAccountManager:[DBAccountManager sharedManager]];
+        [[EntryController sharedInstance].datastore close];
+        [localManager migrateToAccount:account error:nil];
+        [DBDatastoreManager setSharedManager:[DBDatastoreManager managerForAccount:account]];
+        
+        [EntryController updateSharedInstance];
+        return YES;
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
