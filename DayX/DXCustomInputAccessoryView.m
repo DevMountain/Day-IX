@@ -18,12 +18,12 @@
 @implementation DXCustomInputAccessoryView
 
 - (id)init {
-    self = [super initWithFrame:CGRectMake(0, 0, self.window.frame.size.width, 40.0)];
+    self = [super initWithFrame:CGRectZero];
     if (self) {
         self.toolbar = [UIToolbar new];
         CGSize toolbarSize = [self.toolbar sizeThatFits:self.toolbar.frame.size];
         self.toolbar.frame = CGRectMake(0, 0, toolbarSize.width, toolbarSize.height);
-        self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
         self.frame = self.toolbar.frame;
         
         self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouched)];
