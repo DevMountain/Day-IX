@@ -8,8 +8,9 @@
 
 #import "DXDetailViewController.h"
 #import "EntryController.h"
+#import "DXCustomInputAccessoryView.h"
 
-@interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
+@interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate, DXCustomInputAccessoryViewDelegate>
 
 @property (nonatomic, strong) Entry *entry;
 
@@ -36,6 +37,10 @@
  
     self.textField.text = self.entry.title;
     self.textView.text = self.entry.text;
+    
+    DXCustomInputAccessoryView *inputAccesoryView = [DXCustomInputAccessoryView new];
+    inputAccesoryView.delegate = self;
+    self.textView.inputAccessoryView = inputAccesoryView;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -69,6 +74,13 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+
+#pragma mark - DXCustom Accessory View Delegate
+
+- (void)donePressed {
+//    [self.view endEditing:YES];
+    [self.textView resignFirstResponder];
 }
 
 @end

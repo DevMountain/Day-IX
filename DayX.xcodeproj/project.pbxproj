@@ -35,6 +35,7 @@
 		E70756731AA5300700F8051D /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 715A720919DDD2B000895248 /* Entry.m */; };
 		E70756741AA5300A00F8051D /* EntryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7160740019CADDA500D730CF /* EntryController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E70756751AA5300F00F8051D /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7160740119CADDA500D730CF /* EntryController.m */; };
+		E789A73D1AB8E760008E314C /* DXCustomInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E789A73C1AB8E760008E314C /* DXCustomInputAccessoryView.m */; };
 		E7F6236A1AA69D6E008717F2 /* DXEntriesListInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F623691AA69D6E008717F2 /* DXEntriesListInterfaceController.m */; };
 		E7F6236D1AA69D6E008717F2 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F6236C1AA69D6E008717F2 /* NotificationController.m */; };
 		E7F623701AA69D6E008717F2 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F6236F1AA69D6E008717F2 /* GlanceController.m */; };
@@ -156,6 +157,8 @@
 		E70756581AA52EE600F8051D /* DayXKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayXKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E70756601AA52EE600F8051D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E70756611AA52EE600F8051D /* DayXKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayXKitTests.m; sourceTree = "<group>"; };
+		E789A73B1AB8E760008E314C /* DXCustomInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXCustomInputAccessoryView.h; sourceTree = "<group>"; };
+		E789A73C1AB8E760008E314C /* DXCustomInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXCustomInputAccessoryView.m; sourceTree = "<group>"; };
 		E7F623631AA69D6E008717F2 /* DayX WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DayX WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F623661AA69D6E008717F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7F623671AA69D6E008717F2 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				71B57C4619C758CB00EF6AE3 /* DXDetailViewController.h */,
 				71B57C4719C758CB00EF6AE3 /* DXDetailViewController.m */,
 				71B57C4819C758CB00EF6AE3 /* DXDetailViewController.xib */,
+				E789A73B1AB8E760008E314C /* DXCustomInputAccessoryView.h */,
+				E789A73C1AB8E760008E314C /* DXCustomInputAccessoryView.m */,
 				711A507B19388095005642EF /* Images.xcassets */,
 				711A507019388095005642EF /* Supporting Files */,
 			);
@@ -655,6 +660,7 @@
 				711A507619388095005642EF /* main.m in Sources */,
 				7160740519CAE03C00D730CF /* DXListViewController.m in Sources */,
 				71B57C4919C758CB00EF6AE3 /* DXDetailViewController.m in Sources */,
+				E789A73D1AB8E760008E314C /* DXCustomInputAccessoryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
