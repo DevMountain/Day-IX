@@ -41,6 +41,7 @@
     DXCustomInputAccessoryView *inputAccesoryView = [DXCustomInputAccessoryView new];
     inputAccesoryView.delegate = self;
     self.textView.inputAccessoryView = inputAccesoryView;
+    self.textField.inputAccessoryView = inputAccesoryView;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -79,8 +80,31 @@
 #pragma mark - DXCustom Accessory View Delegate
 
 - (void)donePressed {
-//    [self.view endEditing:YES];
-    [self.textView resignFirstResponder];
+    [self.view endEditing:YES];
+//    [self.textView resignFirstResponder];
 }
+
+- (void)previousPressed {
+    [self switchFirstResponder];
+}
+
+- (void)nextPressed {
+    [self switchFirstResponder];
+}
+
+- (void)switchFirstResponder {
+    if ([self.textField isFirstResponder]) {
+        [self.textView becomeFirstResponder];
+    } else {
+        [self.textField becomeFirstResponder];
+    }
+}
+
+
+
+
+
+
+
 
 @end

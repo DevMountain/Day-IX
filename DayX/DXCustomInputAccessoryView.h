@@ -19,5 +19,7 @@
 @protocol DXCustomInputAccessoryViewDelegate <NSObject>
 
 - (void)donePressed;
+- (void)previousPressed;
+- (void)nextPressed;
 
 @end

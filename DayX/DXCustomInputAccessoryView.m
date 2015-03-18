@@ -26,20 +26,31 @@
         self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
         self.frame = self.toolbar.frame;
         
-        self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouched)];
+        self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTouched)];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        [self.toolbar setItems:@[flexibleSpace,self.doneButton]];
+        UIBarButtonItem *prevButton = [[UIBarButtonItem alloc] initWithTitle:@"◀︎" style:UIBarButtonItemStylePlain target:self action:@selector(previousButtonPressed)];
+        UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"▶︎" style:UIBarButtonItemStylePlain target:self action:@selector(nextButtonPressed)];
+        [self.toolbar setItems:@[prevButton, nextButton, flexibleSpace,self.doneButton]];
         
         [self.toolbar setBarTintColor:[UIColor colorWithRed:37/255.0 green:170/255.0 blue:225/255.0 alpha:1]];
-        self.doneButton.tintColor = [UIColor whiteColor];
+        [self.toolbar setTintColor:[UIColor whiteColor]];
+//        self.doneButton.tintColor = [UIColor whiteColor];
         
         [self addSubview:self.toolbar];
     }
     return self;
 }
 
-- (void)doneTouched {
+- (void)doneButtonTouched {
     [self.delegate donePressed];
+}
+
+- (void)previousButtonPressed {
+    [self.delegate previousPressed];
+}
+
+- (void)nextButtonPressed {
+    [self.delegate nextPressed];
 }
 
 @end
