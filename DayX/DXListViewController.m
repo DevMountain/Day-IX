@@ -9,10 +9,12 @@
 #import "DXListViewController.h"
 #import "DXListTableViewDataSource.h"
 #import "DXDetailViewController.h"
+#import <ChimpKit/ChimpKit.h>
+#import <ChimpKit/CKSubscribeAlertView.h>
 
 #import "EntryController.h"
 
-@interface DXListViewController () <UITableViewDelegate>
+@interface DXListViewController () <UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DXListTableViewDataSource *dataSource;
@@ -26,6 +28,22 @@
 
 	self.screenName = @"Entries List";
     [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	if (![userDefaults boolForKey:@"HasShownEmailSignup"]) {
+		CKSubscribeAlertView *subscribeAlert = [[CKSubscribeAlertView alloc] initWithTitle:@"Join Our Newsletter!"
+																				   message:@"We won't spam you, promise."
+																					listId:@"738a11f363"
+																		 cancelButtonTitle:@"Cancel"
+																	  subscribeButtonTitle:@"Subscribe"];
+		[subscribeAlert show];
+		[userDefaults setBool:YES forKey:@"HasShownEmailSignup"];
+	}
 }
 
 - (void)viewDidLoad {
@@ -42,7 +60,6 @@
     self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self;
     [self.dataSource registerTableView:self.tableView];
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -9,6 +9,8 @@
 #import "DXAppDelegate.h"
 #import "DXListViewController.h"
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <ChimpKit/ChimpKit.h>
+
 @implementation DXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,6 +20,8 @@
 	googleAnalytics.dispatchInterval = 20;
 	[[googleAnalytics logger] setLogLevel:kGAILogLevelVerbose];
 	[googleAnalytics trackerWithTrackingId:@"UA-61164730-1"];
+	
+	[[ChimpKit sharedKit] setApiKey:@"ba3c3fcc67c9d1493639300206207cbe-us5"];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
