@@ -8,6 +8,7 @@
 
 #import "DXDetailViewController.h"
 #import "EntryController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -53,6 +54,9 @@
 }
 
 - (IBAction)clear:(id)sender {
+	
+	[[Crashlytics sharedInstance] crash];
+	
     self.textField.text = @"";
     self.textView.text = @"";
 }

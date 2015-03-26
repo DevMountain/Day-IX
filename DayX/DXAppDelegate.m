@@ -9,6 +9,8 @@
 #import "DXAppDelegate.h"
 #import "DXListViewController.h"
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <Crashlytics/Crashlytics.h>
+
 @implementation DXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,6 +20,8 @@
 	googleAnalytics.dispatchInterval = 20;
 	[[googleAnalytics logger] setLogLevel:kGAILogLevelVerbose];
 	[googleAnalytics trackerWithTrackingId:@"UA-61164730-1"];
+	
+	[Crashlytics startWithAPIKey:@"eb00f5a9b068225d9ea5063f2ed40c2b24d22d64"];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
