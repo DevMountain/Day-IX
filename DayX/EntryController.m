@@ -7,6 +7,8 @@
 //
 
 #import "EntryController.h"
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 @interface EntryController ()
 
@@ -39,9 +41,11 @@
     entry.title = title;
     entry.text = text;
     entry.timestamp = date;
-
+	
     [self synchronize];
-    
+	
+	NSDictionary *event = [[GAIDictionaryBuilder createEventWithCategory:@"Entries" action:@"Create" label:nil value:@1] build];
+	[[[GAI sharedInstance] defaultTracker] send:event];
 }
 
 - (void)removeEntry:(Entry *)entry {
@@ -49,6 +53,8 @@
     [entry.managedObjectContext deleteObject:entry];
     [self synchronize];
 
+	NSDictionary *event = [[GAIDictionaryBuilder createEventWithCategory:@"Entries" action:@"Remove" label:nil value:@1] build];
+	[[[GAI sharedInstance] defaultTracker] send:event];
 }
 
 - (void)synchronize {

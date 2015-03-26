@@ -39,7 +39,12 @@
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	self.screenName = @"Entry Detail Screen";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -8,11 +8,17 @@
 
 #import "DXAppDelegate.h"
 #import "DXListViewController.h"
-
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 @implementation DXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	GAI *googleAnalytics = [GAI sharedInstance];
+	googleAnalytics.trackUncaughtExceptions = YES;
+	googleAnalytics.dispatchInterval = 20;
+	[[googleAnalytics logger] setLogLevel:kGAILogLevelVerbose];
+	[googleAnalytics trackerWithTrackingId:@"UA-61164730-1"];
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     

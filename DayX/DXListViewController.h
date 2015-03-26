@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleAnalytics-iOS-SDK/GAITrackedViewController.h>
 
-@interface DXListViewController : UIViewController
+@interface DXListViewController : GAITrackedViewController
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleAnalytics-iOS-SDK/GAITrackedViewController.h>
 
 @class Entry;
 
 static NSString * const EntryKey = @"entry";
 
-@interface DXDetailViewController : UIViewController
+@interface DXDetailViewController : GAITrackedViewController
 
 - (void)updateWithEntry:(Entry *)entry;
 

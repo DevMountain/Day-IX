@@ -23,7 +23,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
+	self.screenName = @"Entries List";
     [self.tableView reloadData];
 }
 
