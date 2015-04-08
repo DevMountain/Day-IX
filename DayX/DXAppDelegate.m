@@ -16,8 +16,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    DXDetailViewController *detailViewController = [DXDetailViewController new];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateInitialViewController];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
