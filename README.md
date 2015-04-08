@@ -9,14 +9,18 @@ Review principles of the UITableView datasource and delegate and the UITextField
 ##Interface Builder and Text Field Delegate
 
 ###Step 1: Add a new ```DetailViewController``` as your root view controller
-- Create a new UIViewController subclass called ```DetailViewController``` **(make sure to select "Also create XIB file")**
+- Create an empty Storyboard file using File -> New File -> User Interface -> Storyboard
+- Add a new View Controller object to the Storyboard canvas, embed it in a UINavigationController, and set the UINavigationController as the Initial View Controller in the Storyboard
+- Create a new UIViewController subclass called ```DetailViewController```, and set the class of the View Controller in your Storyboard to your ```DetailViewController```
 - Initialize and add the view controller as the root of a UINavigationController to the ```rootViewController``` of the window
+
+```self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateInitialViewController]```
 
 ###Step 2: Add a text field to the view controller
 - Add a UITextField to the top of the view controller in your XIB
 - Add an IBOutlet UITextField property to the interface in the implementation file
 - Wire up the UITextField 'referencing outlet' to the 'textField' outlet on the view controller
-- Declare the viewcontroller as a ```<UITextFieldDelegate>```
+- Wire up the UITextField to the DetailViewController as the delegate
 - Add the ```textFieldShouldReturn``` method to the class 
 - In the method, have the ```textField``` resign first responder
 - In the ```viewDidLoad``` method set ```self``` as the delegate of the ```textField```
