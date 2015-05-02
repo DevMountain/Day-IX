@@ -1,7 +1,9 @@
 Day-X
 =====
 
-A simple iOS app that acts as a journal with persistent store. This repository will still be used as solution code for some concepts, but for the initial build of Day-X, use the [new repository and README](http://github.com/devmountain/day-x).
+A simple iOS app that acts as a journal with persistent store. 
+
+#### Looking for Day-X? This repository will still be used as solution code for some concepts, but for the initial build of Day-X, use the [new repository and README](http://github.com/devmountain/day-x).
 
 ##Objectives
 Review principles of the UITableView datasource and delegate and the UITextField delegate. Add storage via NSUserDefaults, and then add custom model objects.
